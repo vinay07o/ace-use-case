@@ -1,37 +1,77 @@
-# from utils import utils  # Assuming your function is in utils.py
-from ace.utils import add_numbers
+import os
+import pytest
+from ace.utils import read_file
+# from pyspark.sql.utils import AnalysisException
 
 
-def test_add_numbers():
-    assert add_numbers(2, 3) == 5
-    assert add_numbers(-1, 1) == 0
-    assert add_numbers(0, 0) == 0
+class TestReadFile:
+    @pytest.mark.parametrize(
+        "file_name, file_format, options, expected_rows, expected_column",
+        [
+            ("..\samples\sample.csv", "csv", {"header": "true", "inferSchema": "true"}, 5, "name"),
+            ("..\samples\iris.parquet", "parquet", None, 150, "variety"),
+        ]
+    )
+    def test_valid_files(self, spark, test_data_dir, file_name, file_format, options, expected_rows, expected_column):
+        """Test reading valid files."""
+        file_path = os.path.join(test_data_dir, file_name)
+        df = read_file(file_path, file_format, options, spark)
+        print(df.show())
+        assert df.count() == expected_rows  # Check row count
+        assert expected_column in df.columns  # Check for expected column
 
+    @pytest.mark.parametrize(
+        "file_format",
+        ["xml", "txt", "unsupported_format"]
+    )
+    def test_invalid_file_format(self, spark, test_data_dir, file_format):
+        """Test unsupported file formats."""
+        file_path = os.path.join(test_data_dir, "sample.csv")
+        with pytest.raises(ValueError, match="Unsupported file format"):
+            read_file(file_path, file_format, None, spark)
 
-# # test_sample_dataframe.py
-# def test_row_count(sample_dataframe):
-#     """
-#     Test that the DataFrame contains the correct number of rows.
-#     """
-#     assert sample_dataframe.count() == 3
+    @pytest.mark.parametrize(
+        "file_name, file_format, options, expected_errortype, expected_messege",
+        [            
+            (
+                "..\samples\sample.csv", "csv",
+                ["abc"],
+                ValueError,
+                f"Options must be a dictionary.",
+            )
+        ]
 
-# def test_column_names(sample_dataframe):
-#     """
-#     Test that the DataFrame contains the expected columns.
-#     """
-#     expected_columns = {"id", "name", "age"}
-#     actual_columns = set(sample_dataframe.columns)
-#     assert actual_columns == expected_columns
+    )
+    def test_exceptions(self, file_name, file_format, expected_messege, expected_errortype, options, test_data_dir):
+        file_path = os.path.join(test_data_dir, file_name)
+        with pytest.raises(expected_errortype, match=expected_messege):
+            read_file(
+                file_path, file_format, options, None
+            )
 
-# def test_data_content(sample_dataframe):
-#     """
-#     Test that the DataFrame contains the expected data.
-#     """
-#     data = sample_dataframe.collect()
-#     expected_data = [
-#         (1, "Alice", 25),
-#         (2, "Bob", 30),
-#         (3, "Charlie", 35),
-#     ]
-#     actual_data = [(row.id, row.name, row.age) for row in data]
-#     assert actual_data == expected_data
+    
+    @pytest.mark.parametrize(
+        "file_name, file_format, options, expected_errortype, expected_messege",
+        [
+            (
+                "",
+                "csv",
+                None,
+                ValueError,
+                "Invalid file path. It must be a non-empty string.",
+            ),
+            (
+                "sample.csv",
+                "csv",
+                None,
+                FileNotFoundError,
+                f"The file path 'sample.csv' does not exist.",
+            ),
+        ]
+
+    )
+    def test_exceptions_two(self, file_name, file_format, expected_messege, expected_errortype, options):
+        with pytest.raises(expected_errortype, match=expected_messege):
+            read_file(
+                file_name, file_format, options, None
+            )

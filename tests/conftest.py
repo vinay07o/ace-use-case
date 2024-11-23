@@ -1,24 +1,19 @@
+import os
 import pytest
 from pyspark.sql import SparkSession
 
-# @pytest.fixture(scope="session")
-# def spark():
-#     """
-#     Create a SparkSession fixture for testing.
-#     """
-#     return SparkSession.builder \
-#         .appName("Pytest-Spark") \
-#         .master("local[*]") \
-#         .getOrCreate()
 
-# @pytest.fixture
-# def sample_dataframe(spark):
-#     """
-#     Create a sample DataFrame fixture.
-#     """
-#     data = [
-#         {"id": 1, "name": "Alice", "age": 25},
-#         {"id": 2, "name": "Bob", "age": 30},
-#         {"id": 3, "name": "Charlie", "age": 35},
-#     ]
-#     return spark.createDataFrame(data)
+@pytest.fixture(scope="session")
+def spark():
+    """Fixture to create and yield a Spark session for all tests."""
+    spark_session = SparkSession.builder \
+        .appName("TestReadFile") \
+        .master("local[1]") \
+        .getOrCreate()
+    return spark_session
+
+
+@pytest.fixture(scope="session")
+def test_data_dir():
+    """Fixture for the test data directory."""
+    return os.path.abspath(os.path.join(os.path.dirname(__file__), "data"))

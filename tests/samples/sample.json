@@ -1,0 +1,33 @@
+[
+    {
+      "id": 1,
+      "name": "John Doe",
+      "age": 28,
+      "city": "New York"
+    },
+    {
+      "id": 2,
+      "name": "Jane Smith",
+      "age": 34,
+      "city": "Los Angeles"
+    },
+    {
+      "id": 3,
+      "name": "Mary Johnson",
+      "age": 45,
+      "city": "Chicago"
+    },
+    {
+      "id": 4,
+      "name": "James Brown",
+      "age": 23,
+      "city": "Houston"
+    },
+    {
+      "id": 5,
+      "name": "Linda Davis",
+      "age": 30,
+      "city": "Phoenix"
+    }
+  ]
+  
