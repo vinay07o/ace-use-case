@@ -1,0 +1,7 @@
+# Installing requirements
+black
+isort
+pytest
+pyspark
+findspark
+coverage

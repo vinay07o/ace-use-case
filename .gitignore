@@ -1,0 +1,29 @@
+#vs code extantions
+.vscode
+
+#ignoring packages
+.Python
+build/
+dist/
+htmlcov/
+.venv/
+venv
+.eggs/
+eggs/
+downloads
+*.egg-info/
+*.egg
+.coverage
+
+# ipython checkpoints 
+.ipynb_checkpoints
+__pycache__/
+.ipynb
+
+# Unwanted files formates
+.pdf
+.png
+.jpg
+.jpeg
+.csv
+.DS_Store
