@@ -1,0 +1,520 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" version="24.8.6">
+  <diagram name="Page-1" id="Avq0BE3WvIAjMaOvI2mw">
+    <mxGraphModel dx="583" dy="314" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="PgMIG-ADVgImzjIca9vb-122" value="" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="157.5" y="350" width="192.5" height="115.5" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-39" value="" style="group;fillColor=#ffcc99;strokeColor=#36393d;" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="410" y="250" width="175" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-23" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="PgMIG-ADVgImzjIca9vb-39">
+          <mxGeometry width="175" height="110.00000000000001" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-24" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;MARC&lt;/b&gt;&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="PgMIG-ADVgImzjIca9vb-39">
+          <mxGeometry x="45" width="65" height="33" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-25" value="" style="endArrow=none;html=1;rounded=0;exitX=0;exitY=0.25;exitDx=0;exitDy=0;entryX=1;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="PgMIG-ADVgImzjIca9vb-39" source="PgMIG-ADVgImzjIca9vb-23" target="PgMIG-ADVgImzjIca9vb-23">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="235" y="-33" as="sourcePoint" />
+            <mxPoint x="335" y="-33" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-26" value="&lt;div style=&quot;font-size: 11px;&quot;&gt;&lt;div&gt;○ SOURCE_SYSTEM_ERP: Source ERP system identifier&lt;/div&gt;&lt;div&gt;○ MATNR: Material Number&lt;/div&gt;&lt;div&gt;○ WERKS: Plant&lt;/div&gt;&lt;div&gt;○ PLIFZ, DZEIT, DISLS&lt;/div&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="PgMIG-ADVgImzjIca9vb-39">
+          <mxGeometry x="5" y="33" width="170" height="66" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-40" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="2400" y="1240" width="175" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-35" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="PgMIG-ADVgImzjIca9vb-40">
+          <mxGeometry width="175" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-36" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;T001&lt;/b&gt;&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="PgMIG-ADVgImzjIca9vb-40">
+          <mxGeometry x="45" width="65" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-37" value="" style="endArrow=none;html=1;rounded=0;exitX=0;exitY=0.25;exitDx=0;exitDy=0;entryX=1;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="PgMIG-ADVgImzjIca9vb-40" source="PgMIG-ADVgImzjIca9vb-35" target="PgMIG-ADVgImzjIca9vb-35">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="235" y="-30" as="sourcePoint" />
+            <mxPoint x="335" y="-30" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-38" value="&lt;div style=&quot;&quot;&gt;&lt;div style=&quot;&quot;&gt;&lt;div&gt;○ MANDT: Client&lt;/div&gt;&lt;div&gt;○ BUKRS: Company Code&lt;/div&gt;&lt;div&gt;○ WAERS: Currency Key&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="PgMIG-ADVgImzjIca9vb-40">
+          <mxGeometry x="5" y="30" width="170" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-41" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="1880" y="1040" width="175" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-31" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="PgMIG-ADVgImzjIca9vb-41">
+          <mxGeometry width="175" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-32" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;T001K&lt;/b&gt;&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="PgMIG-ADVgImzjIca9vb-41">
+          <mxGeometry x="45" width="65" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-33" value="" style="endArrow=none;html=1;rounded=0;exitX=0;exitY=0.25;exitDx=0;exitDy=0;entryX=1;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="PgMIG-ADVgImzjIca9vb-41" source="PgMIG-ADVgImzjIca9vb-31" target="PgMIG-ADVgImzjIca9vb-31">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="235" y="-30" as="sourcePoint" />
+            <mxPoint x="335" y="-30" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-34" value="&lt;div style=&quot;&quot;&gt;&lt;div style=&quot;&quot;&gt;&lt;div&gt;○ MANDT: Client&lt;/div&gt;&lt;div&gt;○ BWKEY: Valuation Area&lt;/div&gt;&lt;div&gt;○ BUKRS: Company Code&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="PgMIG-ADVgImzjIca9vb-41">
+          <mxGeometry x="5" y="30" width="170" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-42" value="" style="group;fillColor=#eeeeee;strokeColor=#36393d;" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="410" y="450" width="175" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-9" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="PgMIG-ADVgImzjIca9vb-42">
+          <mxGeometry width="175" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-7" value="&lt;b&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;MARA&lt;/font&gt;&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="PgMIG-ADVgImzjIca9vb-42">
+          <mxGeometry x="45" width="65" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-10" value="" style="endArrow=none;html=1;rounded=0;exitX=0;exitY=0.25;exitDx=0;exitDy=0;entryX=1;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="PgMIG-ADVgImzjIca9vb-42" source="PgMIG-ADVgImzjIca9vb-9" target="PgMIG-ADVgImzjIca9vb-9">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="235" y="-30" as="sourcePoint" />
+            <mxPoint x="335" y="-30" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-8" value="&lt;div style=&quot;font-size: 11px;&quot;&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;○ MANDT: Client&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;○ MATNR: Material Number&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;○ MEINS: Base Unit of Measure&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;○ ZZMDGM/ZZA_TEXT4&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="PgMIG-ADVgImzjIca9vb-42">
+          <mxGeometry x="5" y="30" width="170" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-46" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="660" y="350" width="120" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-44" value="" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="PgMIG-ADVgImzjIca9vb-46">
+          <mxGeometry y="10" width="120" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-45" value="MATNR: Material Number" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="PgMIG-ADVgImzjIca9vb-46">
+          <mxGeometry x="5" y="50" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-47" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="PgMIG-ADVgImzjIca9vb-26" target="PgMIG-ADVgImzjIca9vb-44">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="480" y="460" as="sourcePoint" />
+            <mxPoint x="720" y="340" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="720" y="316" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-48" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="PgMIG-ADVgImzjIca9vb-8">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="480" y="460" as="sourcePoint" />
+            <mxPoint x="720" y="460" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="720" y="510" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-49" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="780" y="410" as="sourcePoint" />
+            <mxPoint x="860" y="410" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-50" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="860" y="660" width="175" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-27" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="PgMIG-ADVgImzjIca9vb-50">
+          <mxGeometry width="175" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-28" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;T001W&lt;/b&gt;&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="PgMIG-ADVgImzjIca9vb-50">
+          <mxGeometry x="45" width="65" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-29" value="" style="endArrow=none;html=1;rounded=0;exitX=0;exitY=0.25;exitDx=0;exitDy=0;entryX=1;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="PgMIG-ADVgImzjIca9vb-50" source="PgMIG-ADVgImzjIca9vb-27" target="PgMIG-ADVgImzjIca9vb-27">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="235" y="-30" as="sourcePoint" />
+            <mxPoint x="335" y="-30" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-30" value="&lt;div style=&quot;&quot;&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;font-size: 11px;&quot;&gt;○ MANDT: Client&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;font-size: 11px;&quot;&gt;○ WERKS: Plant&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;font-size: 11px;&quot;&gt;○ BWKEY: Valuation Area&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;font-size: 11px;&quot;&gt;○ NAME1: Name of Plant/Branch&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="PgMIG-ADVgImzjIca9vb-50">
+          <mxGeometry x="5" y="30" width="170" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-51" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="860" y="350" width="175" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-52" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="PgMIG-ADVgImzjIca9vb-51">
+          <mxGeometry width="175" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-53" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;Unit of Measures&lt;/b&gt;&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="PgMIG-ADVgImzjIca9vb-51">
+          <mxGeometry x="40" y="4" width="95" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-54" value="" style="endArrow=none;html=1;rounded=0;exitX=0;exitY=0.25;exitDx=0;exitDy=0;entryX=1;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="PgMIG-ADVgImzjIca9vb-51" source="PgMIG-ADVgImzjIca9vb-52" target="PgMIG-ADVgImzjIca9vb-52">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="235" y="-38" as="sourcePoint" />
+            <mxPoint x="335" y="-38" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-55" value="&lt;div style=&quot;&quot;&gt;&lt;div style=&quot;&quot;&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;○ SOURCE_SYSTEM_ERP: Source ERP system identifier&lt;/div&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;○ MATNR: Material Number&lt;/div&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;○ WERKS: Plant&lt;/div&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;○ PLIFZ, DZEIT, DISLS&lt;/div&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;&lt;div&gt;○ MANDT: Client&lt;/div&gt;&lt;div&gt;○ MEINS: Base Unit of Measure&lt;/div&gt;&lt;div&gt;○ ZZMDGM/ZZA_TEXT4&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="PgMIG-ADVgImzjIca9vb-51">
+          <mxGeometry x="2.5" y="50.666666666666664" width="170" height="139.33333333333331" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-56" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="1155" y="530" width="120" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-57" value="" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="PgMIG-ADVgImzjIca9vb-56">
+          <mxGeometry y="10" width="120" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-58" value="MANDT &amp;amp; WERKS" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="PgMIG-ADVgImzjIca9vb-56">
+          <mxGeometry x="5" y="45" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-59" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1035" y="460" as="sourcePoint" />
+            <mxPoint x="1215" y="540" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1170" y="460" />
+              <mxPoint x="1215" y="460" />
+              <mxPoint x="1215" y="480" />
+              <mxPoint x="1215" y="510" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-60" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" target="PgMIG-ADVgImzjIca9vb-57">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1035" y="720" as="sourcePoint" />
+            <mxPoint x="1170" y="670" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1215" y="720" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-61" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="1360" y="830" width="175" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-13" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="PgMIG-ADVgImzjIca9vb-61">
+          <mxGeometry width="175" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-14" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;MBEW&lt;/b&gt;&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="PgMIG-ADVgImzjIca9vb-61">
+          <mxGeometry x="57.5" y="10" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-15" value="" style="endArrow=none;html=1;rounded=0;exitX=0;exitY=0.25;exitDx=0;exitDy=0;entryX=1;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="PgMIG-ADVgImzjIca9vb-61" source="PgMIG-ADVgImzjIca9vb-13" target="PgMIG-ADVgImzjIca9vb-13">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="235" y="-30" as="sourcePoint" />
+            <mxPoint x="335" y="-30" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-16" value="&lt;div style=&quot;font-size: 11px;&quot;&gt;&lt;div&gt;○ MANDT: Client&lt;/div&gt;&lt;div&gt;○ MATNR: Material Number&lt;/div&gt;&lt;div&gt;○ BWKEY: Valuation Area&lt;/div&gt;&lt;div&gt;○ VPRSV: Price Control Indicator&lt;/div&gt;&lt;div&gt;○ VERPR: Moving Average Price&lt;/div&gt;&lt;div&gt;○ STPRS: Standard Price&lt;/div&gt;&lt;div&gt;○ PEINH: Price Unit&lt;/div&gt;&lt;div&gt;○ BKLAS: Valuation Class&lt;/div&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="PgMIG-ADVgImzjIca9vb-61">
+          <mxGeometry x="5" y="40" width="170" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-62" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="1360" y="500" width="175" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-63" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="PgMIG-ADVgImzjIca9vb-62">
+          <mxGeometry width="175" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-64" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;Name of Plant&lt;/b&gt;&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="PgMIG-ADVgImzjIca9vb-62">
+          <mxGeometry x="20" y="10" width="120" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-65" value="" style="endArrow=none;html=1;rounded=0;exitX=0;exitY=0.25;exitDx=0;exitDy=0;entryX=1;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="PgMIG-ADVgImzjIca9vb-62" source="PgMIG-ADVgImzjIca9vb-63" target="PgMIG-ADVgImzjIca9vb-63">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="235" y="-46" as="sourcePoint" />
+            <mxPoint x="335" y="-46" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-66" value="&lt;div style=&quot;&quot;&gt;&lt;div style=&quot;&quot;&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;○ SOURCE_SYSTEM_ERP: Source ERP system identifier&lt;/div&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;○ MATNR: Material Number&lt;/div&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;○ WERKS: Plant&lt;/div&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;○ PLIFZ, DZEIT, DISLS&lt;/div&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;&lt;div&gt;○ MANDT: Client&lt;/div&gt;&lt;div&gt;○ MEINS: Base Unit of Measure&lt;/div&gt;&lt;div&gt;○ ZZMDGM/ZZA_TEXT4&lt;/div&gt;&lt;div&gt;&lt;div style=&quot;font-size: 12px;&quot;&gt;&lt;span style=&quot;font-size: 11px;&quot;&gt;○ BWKEY: Valuation Area&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 12px;&quot;&gt;&lt;span style=&quot;font-size: 11px;&quot;&gt;○ NAME1: Name of Plant/Branch&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="PgMIG-ADVgImzjIca9vb-62">
+          <mxGeometry x="2.5" y="61.33333333333333" width="170" height="168.66666666666663" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-67" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1275" y="590" as="sourcePoint" />
+            <mxPoint x="1360" y="590" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-68" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="1660" y="700" width="120" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-69" value="" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="PgMIG-ADVgImzjIca9vb-68">
+          <mxGeometry y="10" width="120" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-70" value="MANDT &amp;amp; MATNR &amp;amp; BWKEY" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="PgMIG-ADVgImzjIca9vb-68">
+          <mxGeometry x="5" y="50" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-71" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.999;exitY=0.569;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="PgMIG-ADVgImzjIca9vb-63">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1540" y="630" as="sourcePoint" />
+            <mxPoint x="1720" y="710" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1675" y="630" />
+              <mxPoint x="1720" y="630" />
+              <mxPoint x="1720" y="650" />
+              <mxPoint x="1720" y="680" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-72" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=1.004;exitY=0.169;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" target="PgMIG-ADVgImzjIca9vb-69" source="PgMIG-ADVgImzjIca9vb-16">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1540" y="890" as="sourcePoint" />
+            <mxPoint x="1675" y="840" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1720" y="890" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-73" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="1880" y="650" width="175" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-74" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="PgMIG-ADVgImzjIca9vb-73">
+          <mxGeometry width="175" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-75" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;Standard Price&lt;/b&gt;&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="PgMIG-ADVgImzjIca9vb-73">
+          <mxGeometry x="20" y="13.043478260869566" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-76" value="" style="endArrow=none;html=1;rounded=0;exitX=0;exitY=0.25;exitDx=0;exitDy=0;entryX=1;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="PgMIG-ADVgImzjIca9vb-73" source="PgMIG-ADVgImzjIca9vb-74" target="PgMIG-ADVgImzjIca9vb-74">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="235" y="-60" as="sourcePoint" />
+            <mxPoint x="335" y="-60" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-77" value="&lt;div style=&quot;&quot;&gt;&lt;div style=&quot;&quot;&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;○ SOURCE_SYSTEM_ERP: Source ERP system identifier&lt;/div&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;○ MATNR: Material Number&lt;/div&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;○ WERKS: Plant&lt;/div&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;○ PLIFZ, DZEIT, DISLS&lt;/div&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;&lt;div&gt;○ MANDT: Client&lt;/div&gt;&lt;div&gt;○ MEINS: Base Unit of Measure&lt;/div&gt;&lt;div&gt;○ ZZMDGM/ZZA_TEXT4&lt;/div&gt;&lt;div&gt;&lt;div style=&quot;font-size: 12px;&quot;&gt;&lt;span style=&quot;font-size: 11px;&quot;&gt;○ BWKEY: Valuation Area&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 12px;&quot;&gt;&lt;span style=&quot;font-size: 11px;&quot;&gt;○ NAME1: Name of Plant/Branch&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 12px;&quot;&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;○ VPRSV: Price Control Indicator&lt;/div&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;○ VERPR: Moving Average Price&lt;/div&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;○ STPRS: Standard Price&lt;/div&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;○ PEINH: Price Unit&lt;/div&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;○ BKLAS: Valuation Class&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="PgMIG-ADVgImzjIca9vb-73">
+          <mxGeometry x="2.5" y="80" width="170" height="219.99999999999994" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-78" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1780" y="760" as="sourcePoint" />
+            <mxPoint x="1880" y="760" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-80" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="2175" y="910" width="120" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-81" value="" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="PgMIG-ADVgImzjIca9vb-80">
+          <mxGeometry y="10" width="120" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-82" value="MANDT &amp;amp; BWKEY" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="PgMIG-ADVgImzjIca9vb-80">
+          <mxGeometry x="5" y="45" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-83" value="" style="endArrow=classic;html=1;rounded=0;exitX=1.001;exitY=0.635;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="PgMIG-ADVgImzjIca9vb-74">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="2060" y="841" as="sourcePoint" />
+            <mxPoint x="2235" y="920" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="2190" y="840" />
+              <mxPoint x="2235" y="840" />
+              <mxPoint x="2235" y="860" />
+              <mxPoint x="2235" y="890" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-84" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" target="PgMIG-ADVgImzjIca9vb-81" source="PgMIG-ADVgImzjIca9vb-34">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="2060" y="1100" as="sourcePoint" />
+            <mxPoint x="2190" y="1050" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="2235" y="1100" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-85" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" target="PgMIG-ADVgImzjIca9vb-87">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="2295" y="970" as="sourcePoint" />
+            <mxPoint x="2395" y="970" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-86" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="2400" y="810" width="175" height="320" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-87" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="PgMIG-ADVgImzjIca9vb-86">
+          <mxGeometry width="175" height="320" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-88" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;Company Code&lt;/b&gt;&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="PgMIG-ADVgImzjIca9vb-86">
+          <mxGeometry x="20" y="13.913043478260871" width="120" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-89" value="" style="endArrow=none;html=1;rounded=0;exitX=0;exitY=0.25;exitDx=0;exitDy=0;entryX=1;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="PgMIG-ADVgImzjIca9vb-86" source="PgMIG-ADVgImzjIca9vb-87" target="PgMIG-ADVgImzjIca9vb-87">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="235" y="-64" as="sourcePoint" />
+            <mxPoint x="335" y="-64" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-90" value="&lt;div style=&quot;&quot;&gt;&lt;div style=&quot;&quot;&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;○ SOURCE_SYSTEM_ERP: Source ERP system identifier&lt;/div&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;○ MATNR: Material Number&lt;/div&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;○ WERKS: Plant&lt;/div&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;○ PLIFZ, DZEIT, DISLS&lt;/div&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;&lt;div&gt;○ MANDT: Client&lt;/div&gt;&lt;div&gt;○ MEINS: Base Unit of Measure&lt;/div&gt;&lt;div&gt;○ ZZMDGM/ZZA_TEXT4&lt;/div&gt;&lt;div&gt;&lt;div style=&quot;font-size: 12px;&quot;&gt;&lt;span style=&quot;font-size: 11px;&quot;&gt;○ BWKEY: Valuation Area&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 12px;&quot;&gt;&lt;span style=&quot;font-size: 11px;&quot;&gt;○ NAME1: Name of Plant/Branch&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 12px;&quot;&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;○ VPRSV: Price Control Indicator&lt;/div&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;○ VERPR: Moving Average Price&lt;/div&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;○ STPRS: Standard Price&lt;/div&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;○ PEINH: Price Unit&lt;/div&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;○ BKLAS: Valuation Class&lt;/div&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;○ BUKRS: Company Code&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="PgMIG-ADVgImzjIca9vb-86">
+          <mxGeometry x="2.5" y="85.33333333333333" width="170" height="234.6666666666666" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-91" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="2690" y="1110" width="120" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-92" value="" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="PgMIG-ADVgImzjIca9vb-91">
+          <mxGeometry y="10" width="120" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-93" value="MANDT &amp;amp; BUKRS" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="PgMIG-ADVgImzjIca9vb-91">
+          <mxGeometry x="5" y="45" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-94" value="" style="endArrow=classic;html=1;rounded=0;exitX=1.001;exitY=0.72;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="PgMIG-ADVgImzjIca9vb-87">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="2580" y="1040" as="sourcePoint" />
+            <mxPoint x="2750" y="1120" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="2705" y="1040" />
+              <mxPoint x="2750" y="1040" />
+              <mxPoint x="2750" y="1060" />
+              <mxPoint x="2750" y="1090" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-95" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" target="PgMIG-ADVgImzjIca9vb-92" source="PgMIG-ADVgImzjIca9vb-38">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="2580" y="1300" as="sourcePoint" />
+            <mxPoint x="2705" y="1250" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="2750" y="1300" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-96" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="2930" y="1000" width="175" height="350" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-97" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="PgMIG-ADVgImzjIca9vb-96">
+          <mxGeometry width="175" height="350" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-98" value="&lt;b style=&quot;font-size: 14px;&quot;&gt;Currency Key&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="PgMIG-ADVgImzjIca9vb-96">
+          <mxGeometry x="20" y="15.217391304347828" width="120" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-99" value="" style="endArrow=none;html=1;rounded=0;exitX=0;exitY=0.25;exitDx=0;exitDy=0;entryX=1;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="PgMIG-ADVgImzjIca9vb-96" source="PgMIG-ADVgImzjIca9vb-97" target="PgMIG-ADVgImzjIca9vb-97">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="235" y="-70" as="sourcePoint" />
+            <mxPoint x="335" y="-70" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-100" value="&lt;div style=&quot;&quot;&gt;&lt;div style=&quot;&quot;&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;○ SOURCE_SYSTEM_ERP: Source ERP system identifier&lt;/div&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;○ MATNR: Material Number&lt;/div&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;○ WERKS: Plant&lt;/div&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;○ PLIFZ, DZEIT, DISLS&lt;/div&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;&lt;div&gt;○ MANDT: Client&lt;/div&gt;&lt;div&gt;○ MEINS: Base Unit of Measure&lt;/div&gt;&lt;div&gt;○ ZZMDGM/ZZA_TEXT4&lt;/div&gt;&lt;div&gt;&lt;div style=&quot;font-size: 12px;&quot;&gt;&lt;span style=&quot;font-size: 11px;&quot;&gt;○ BWKEY: Valuation Area&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 12px;&quot;&gt;&lt;span style=&quot;font-size: 11px;&quot;&gt;○ NAME1: Name of Plant/Branch&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 12px;&quot;&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;○ VPRSV: Price Control Indicator&lt;/div&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;○ VERPR: Moving Average Price&lt;/div&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;○ STPRS: Standard Price&lt;/div&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;○ PEINH: Price Unit&lt;/div&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;○ BKLAS: Valuation Class&lt;/div&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;○ BUKRS: Company Code&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;○ WAERS: Currency Key&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="PgMIG-ADVgImzjIca9vb-96">
+          <mxGeometry x="2.5" y="93.33333333333333" width="170" height="256.6666666666666" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-101" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="2810" y="1170" as="sourcePoint" />
+            <mxPoint x="2930" y="1169" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-105" value="&#xa;&lt;b style=&quot;forced-color-adjust: none; color: rgb(0, 0, 0); font-family: Helvetica; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(251, 251, 251); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;&quot;&gt;MARC&lt;/b&gt;&#xa;&#xa;" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" vertex="1" parent="1">
+          <mxGeometry x="60" y="265" width="60" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-106" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="PgMIG-ADVgImzjIca9vb-110" target="PgMIG-ADVgImzjIca9vb-23">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="580" y="480" as="sourcePoint" />
+            <mxPoint x="630" y="430" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-107" value="&lt;br&gt;&lt;b style=&quot;forced-color-adjust: none; color: rgb(0, 0, 0); font-family: Helvetica; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(251, 251, 251); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;&quot;&gt;MARA&lt;/b&gt;&lt;div&gt;&lt;br/&gt;&lt;/div&gt;" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" vertex="1" parent="1">
+          <mxGeometry x="60" y="450" width="60" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-111" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="PgMIG-ADVgImzjIca9vb-105" target="PgMIG-ADVgImzjIca9vb-110">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="120" y="305" as="sourcePoint" />
+            <mxPoint x="410" y="305" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-115" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="PgMIG-ADVgImzjIca9vb-110" target="PgMIG-ADVgImzjIca9vb-114">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-110" value="" style="sketch=0;aspect=fixed;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#00188D;shape=mxgraph.mscae.enterprise.filter" vertex="1" parent="1">
+          <mxGeometry x="220" y="283" width="50" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-112" value="" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="152.5" y="180" width="207.5" height="103" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-114" value="&lt;p style=&quot;font-size: 11px;&quot;&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;Filter out: LVORM is Null &amp;amp; drop&lt;/font&gt;&lt;/p&gt;&lt;p style=&quot;font-size: 11px;&quot;&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;&amp;nbsp;duplicates&lt;/font&gt;&lt;/p&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="162.5" y="196.5" width="180" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-118" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="PgMIG-ADVgImzjIca9vb-120">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="580" y="669" as="sourcePoint" />
+            <mxPoint x="410" y="494" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-119" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" target="PgMIG-ADVgImzjIca9vb-120">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="120" y="494" as="sourcePoint" />
+            <mxPoint x="410" y="494" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-120" value="" style="sketch=0;aspect=fixed;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#00188D;shape=mxgraph.mscae.enterprise.filter" vertex="1" parent="1">
+          <mxGeometry x="220" y="472" width="50" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-121" value="&lt;p&gt;&lt;span style=&quot;text-align: left; text-wrap-mode: wrap; font-size: 8px;&quot;&gt;BISMT is not in &quot;ARCHIVE&quot;, &quot;DUPLICATE&quot;,&lt;/span&gt;&lt;span style=&quot;font-size: 8px; text-align: left; text-wrap-mode: wrap; background-color: initial;&quot;&gt;RENUMBERED&quot; or is null&lt;/span&gt;&lt;/p&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="115" y="380" width="270" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-123" value="&lt;font style=&quot;font-size: 9px;&quot;&gt;Deletion flag (LVORM) is null or empty.&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="170" y="415" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-124" value="&lt;div&gt;&lt;b&gt;TOO1W&lt;/b&gt;&lt;/div&gt;" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" vertex="1" parent="1">
+          <mxGeometry x="60" y="670" width="60" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-131" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="PgMIG-ADVgImzjIca9vb-125">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1360" y="910" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-125" value="&lt;b style=&quot;forced-color-adjust: none; color: rgb(0, 0, 0); font-family: Helvetica; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(251, 251, 251); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;&quot;&gt;MBEW&lt;/b&gt;" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" vertex="1" parent="1">
+          <mxGeometry x="55" y="870" width="60" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-132" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="PgMIG-ADVgImzjIca9vb-126">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1880" y="1100" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-126" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;TOO1K&lt;/b&gt;&lt;/span&gt;" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" vertex="1" parent="1">
+          <mxGeometry x="55" y="1060" width="60" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-133" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="PgMIG-ADVgImzjIca9vb-127" target="PgMIG-ADVgImzjIca9vb-35">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2390" y="1290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-127" value="&lt;b style=&quot;forced-color-adjust: none; color: rgb(0, 0, 0); font-family: Helvetica; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(251, 251, 251); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;&quot;&gt;TOO1&lt;/b&gt;" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" vertex="1" parent="1">
+          <mxGeometry x="55" y="1250" width="60" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-130" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="PgMIG-ADVgImzjIca9vb-124">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1150" y="700" as="sourcePoint" />
+            <mxPoint x="860" y="705" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-135" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;Filter out: LVORM is Null, BWTAR is Null&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="130" y="870" width="1200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-136" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;Select the required columns.&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="415" y="668" width="230" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-137" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;Select the required columns. and drop duplicates&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="750" y="1070" width="350" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-138" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;Select the required columns.&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="950" y="1250" width="230" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-140" value="&lt;font style=&quot;font-size: 22px;&quot;&gt;Post Processing&lt;/font&gt;" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="3200" y="1160" width="350" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-143" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="3680" y="1000" width="175" height="350" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-144" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="PgMIG-ADVgImzjIca9vb-143">
+          <mxGeometry width="175" height="350" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-145" value="&lt;b style=&quot;font-size: 14px;&quot;&gt;LocalMaterialData&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="PgMIG-ADVgImzjIca9vb-143">
+          <mxGeometry x="20" y="15.217391304347828" width="120" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-146" value="" style="endArrow=none;html=1;rounded=0;exitX=0;exitY=0.25;exitDx=0;exitDy=0;entryX=1;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="PgMIG-ADVgImzjIca9vb-143" source="PgMIG-ADVgImzjIca9vb-144" target="PgMIG-ADVgImzjIca9vb-144">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="235" y="-70" as="sourcePoint" />
+            <mxPoint x="335" y="-70" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-147" value="&lt;div style=&quot;&quot;&gt;&lt;div style=&quot;&quot;&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;○ SOURCE_SYSTEM_ERP: Source ERP system identifier&lt;/div&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;○ MATNR: Material Number&lt;/div&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;○ WERKS: Plant&lt;/div&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;○ PLIFZ, DZEIT, DISLS&lt;/div&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;&lt;div&gt;○ MANDT: Client&lt;/div&gt;&lt;div&gt;○ MEINS: Base Unit of Measure&lt;/div&gt;&lt;div&gt;○ ZZMDGM/ZZA_TEXT4&lt;/div&gt;&lt;div&gt;&lt;div style=&quot;font-size: 12px;&quot;&gt;&lt;span style=&quot;font-size: 11px;&quot;&gt;○ BWKEY: Valuation Area&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 12px;&quot;&gt;&lt;span style=&quot;font-size: 11px;&quot;&gt;○ NAME1: Name of Plant/Branch&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 12px;&quot;&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;○ VPRSV: Price Control Indicator&lt;/div&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;○ VERPR: Moving Average Price&lt;/div&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;○ STPRS: Standard Price&lt;/div&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;○ PEINH: Price Unit&lt;/div&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;○ BKLAS: Valuation Class&lt;/div&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;○ BUKRS: Company Code&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 11px;&quot;&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;○ WAERS: Currency Key&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="PgMIG-ADVgImzjIca9vb-143">
+          <mxGeometry x="2.5" y="93.33333333333333" width="170" height="256.6666666666666" as="geometry" />
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-148" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="3105" y="1190.09" as="sourcePoint" />
+            <mxPoint x="3200" y="1189" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PgMIG-ADVgImzjIca9vb-149" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="3550" y="1191" as="sourcePoint" />
+            <mxPoint x="3677" y="1189" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="3677" y="1189" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
