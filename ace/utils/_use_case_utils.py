@@ -19,6 +19,7 @@ Date:
 
 # Local imports
 import os
+import shutil
 from typing import Optional
 
 # Pyspark libraries
@@ -244,3 +245,46 @@ def process_data(
             raise TypeError(
                 f"Invalid type for input. Expected a boolean type but we got {type(boolean_check)}."
             )
+
+
+def read_multiple_data(data_dir):
+    dataframes_dict = {}
+    for file_name in os.listdir(data_dir):
+        file_path = os.path.join(data_dir, file_name)
+
+        # Check if it is a file (not a subfolder)
+        if os.path.isfile(file_path):
+
+            # Extract the file name without extension
+            base_name = os.path.splitext(file_name)[0]
+
+            # Read the file based on its extension and create DataFrame
+            if file_name.endswith('.csv'):
+                df = read_file(file_path, "csv", {"header": "true", "inferSchema": "true"})
+
+        dataframes_dict.update({base_name: df})
+    
+    return dataframes_dict
+
+
+def save_df_as_csv(df: DataFrame, output_dir:  str, file_name: str):
+
+    # Check input parameter
+    process_data(dataframe_check=df, string_check=output_dir)
+
+    if file_name.split(".")[-1] == "csv":
+        file_name = file_name.split(".")[0]
+    # Write DataFrame to a temporary directory
+    temp_dir = f"{output_dir}/temp_output"
+    df.coalesce(1).write.option("header", "true").csv(temp_dir)
+
+    # Rename the resulting file to the desired name
+    for file in os.listdir(temp_dir):
+        if file.startswith("part-"):
+            shutil.move(f"{temp_dir}/{file}", f"{output_dir}/{file_name}.csv")
+            break
+
+    # Clean up by removing the temporary directory
+    shutil.rmtree(temp_dir)
+
+    print(f"successfully saved local_material.csv in {output_dir}")

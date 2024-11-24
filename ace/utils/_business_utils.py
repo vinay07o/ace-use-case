@@ -70,8 +70,9 @@ from ace.schemas import (
     MBEW_SCHEMA,
     PLANT_DATA_SCHEMA,
     VALUATION_DATA_SCHEMA,
+    AFKO_SCHEMA,
 )
-from ace.utils import enforce_schema, process_data
+from ace.utils._use_case_utils import enforce_schema, process_data
 
 
 def prep_general_material_data(
@@ -409,12 +410,15 @@ def integrate_data(
     - The resulting DataFrame may have additional columns that are not in the original `sap_marc`. 
       Review the final dataset carefully to ensure it meets downstream requirements.
     """
-    
+    # Check input parameter
+    for df_check in [sap_marc, sap_mbew, sap_mara, sap_t001w, sap_t001k, sap_t001]:
+        process_data(dataframe_check=df_check)
+
     # Join sap_marc with sap_mara on MATNR
     df_integrated = sap_marc.join(sap_mara, ["MATNR"], "left")
 
     # Join with sap_t001w on MANDT and WERKS
-    df_integrated = df_integrated.join(sap_t001w, ["MATNR", "WERKS"], "left")
+    df_integrated = df_integrated.join(sap_t001w, ["MANDT", "WERKS"], "left")
     
     # Join with sap_mbew on MANDT, MATNR, and BWKEY
     df_integrated = df_integrated.join(sap_mbew, ["MANDT", "MATNR", "BWKEY"], "left")
@@ -447,6 +451,9 @@ def derive_intra_and_inter_primary_key(df: DataFrame) -> DataFrame:
         A DataFrame with two new columns: 'primary_key_intra' and 'primary_key_inter',
         which are concatenated from MATNR, WERKS, and SOURCE_SYSTEM_ERP.
     """
+    # Check input parameter
+    process_data(dataframe_check=df)
+
     # Derive the primary key for intra-system matching (MATNR + WERKS)
     df = df.withColumn(
         "primary_key_intra", 
@@ -484,7 +491,9 @@ def post_prep_local_material(df: DataFrame) -> DataFrame:
         - Concatenated columns: 'mtl_plant_emd' (WERKS and NAME1), 'primary_key_intra', 'primary_key_inter'
         - Added duplicate count ('no_of_duplicates') and deduplicated records based on SOURCE_SYSTEM_ERP, MATNR, and WERKS.
     """
-    
+    # Check input parameter
+    process_data(dataframe_check=df)
+
     # Concatenate WERKS (Plant) and NAME1 (Name of Plant/Branch) with a hyphen to create 'mtl_plant_emd'
     df = df.withColumn("mtl_plant_emd", F.concat_ws("-", df["WERKS"], df["NAME1"]))
 
@@ -501,4 +510,193 @@ def post_prep_local_material(df: DataFrame) -> DataFrame:
     # Drop duplicates based on SOURCE_SYSTEM_ERP, MATNR, and WERKS
     df = df.dropDuplicates(["SOURCE_SYSTEM_ERP", "MATNR", "WERKS"])
     
+    return df
+
+
+def prep_order_header_data(df: DataFrame) -> DataFrame:
+    """
+    Prepares and transforms the SAP AFKO table (Order Header Data) for further processing.
+    
+    args:
+    -----
+    - `df` (DataFrame): Input DataFrame containing SAP AFKO order header data.
+
+    Returns:
+    --------
+    - DataFrame: Transformed DataFrame with the required fields and derived date columns.
+    """
+    # Check input parameter
+    process_data(dataframe_check=df)
+
+    # Format GSTRP to create start_date
+    df = df.withColumn(
+                "start_date", F.when(
+                F.col("GSTRP").isNull(),
+                F.date_format(F.current_date(), "yyyy-MM"),
+                ).otherwise(F.date_format("GSTRP", "yyyy-MM")))
+    
+    df = df.withColumn("start_date", F.concat_ws("-", F.col("start_date"), F.lit("01")))
+    
+    return enforce_schema(df, AFKO_SCHEMA)
+
+
+def dataframe_with_enforced_schema(df: DataFrame, schema: T.StructType):
+    """
+    Enforces a given schema on the input DataFrame by selecting the required columns.
+
+    This function first validates the input DataFrame using the `process_data` function, 
+    then applies the specified schema to ensure that the DataFrame conforms to the expected structure.
+    
+    Args:
+        df (DataFrame): The input PySpark DataFrame to which the schema will be applied.
+        schema (T.StructType): The schema to enforce on the DataFrame, typically defined 
+                               using PySpark's `StructType`.
+
+    Returns:
+        DataFrame: A new DataFrame that has been transformed to match the enforced schema.
+    
+    Example:
+        schema = StructType([
+            StructField("column1", StringType(), True),
+            StructField("column2", IntegerType(), True)
+        ])
+        
+        df_transformed = dataframe_with_enforced_schema(df, schema)
+    """
+    
+    # Check input parameter
+    process_data(dataframe_check=df)
+
+    # Select the required columns
+    df = enforce_schema(df, schema)
+
+    return df
+
+
+def integration_order(sap_afko: DataFrame, sap_afpo: DataFrame, sap_aufk: DataFrame, sap_mara: DataFrame, sap_cdpos: DataFrame = None) -> DataFrame:
+    """
+    Integrates order-related data by performing multiple join operations on the provided DataFrames.
+    Handles missing values using `ZZGLTRP_ORIG` and `GLTRP`.
+
+    The function performs the following operations:
+        1. Left joins `sap_afko` with `sap_afpo` on `AUFNR`.
+        2. Left joins the result with `sap_aufk` on `AUFNR`.
+        3. Left joins the result with `sap_mara` on `MATNR`.
+        4. If `sap_cdpos` is provided, it performs a left join with `sap_cdpos` on `OBJNR`.
+        5. Handles missing values in the `GLTRP` field by prioritizing `ZZGLTRP_ORIG` if available.
+
+    args:
+    -----
+    - sap_afko (DataFrame): The Order Header Data.
+    - sap_afpo (DataFrame): The Order Item Data.
+    - sap_aufk (DataFrame): The Order Master Data.
+    - sap_mara (DataFrame): The General Material Data.
+    - sap_cdpos (DataFrame, optional): The Change Document Data. Defaults to None.
+
+    Returns:
+    --------
+        DataFrame: A DataFrame resulting from the integration of the input DataFrames with applied joins and missing value handling.
+    """
+    for df_check in [sap_afpo, sap_aufk, sap_mara, sap_cdpos]:
+        process_data(dataframe_check=df_check)
+
+    # Left join sap_afko with sap_afpo on AUFNR
+    result = sap_afko.join(sap_afpo, on="AUFNR", how="left")
+    
+    # Left join the result with sap_aufk on AUFNR
+    result = result.join(sap_aufk, on="AUFNR", how="left")
+    
+    # Left join the result with sap_mara on MATNR
+    result = result.join(sap_mara, on="MATNR", how="left")
+    
+    # If sap_cdpos is provided, left join with sap_cdpos on OBJNR
+    if sap_cdpos is not None:
+        result = result.join(sap_cdpos, on="OBJNR", how="left")
+    
+    # Handle missing values in GLTRP by using ZZGLTRP_ORIG if available
+    result = result.withColumn("GLTRP", F.coalesce(result["ZZGLTRP_ORIG"], result["GLTRP"]))
+
+    return result
+
+
+def post_prep_process_order(df: DataFrame) -> DataFrame:
+    """
+    Post-processes the resulting DataFrame by deriving primary keys, calculating flags, deviations,
+    and timestamps based on specific business logic.
+
+    This function performs the following transformations:
+        1. Derives the `intra` and `inter` primary keys by concatenating specified columns.
+        2. Calculates the `on_time_flag` based on the comparison between `ZZGLTRP_ORIG` and `LTRMI`.
+        3. Computes the `actual_on_time_deviation` and categorizes into `late_delivery_bucket` based on the deviation.
+        4. Ensures `ZZGLTRP_ORIG` is present in the DataFrame, adding it with null values if missing.
+        5. Derives the `mto_vs_mts_flag` based on the presence of `KDAUF`.
+        6. Converts `LTRMI` and `GSTRI` to timestamps for order start and finish.
+
+    args:
+    -----
+    - df (DataFrame): The input DataFrame resulting from the integration step.
+
+    Returns:
+    --------
+        DataFrame: The transformed DataFrame with new columns derived as per the business rules.
+
+    """
+    # Check input parameter
+    process_data(dataframe_check=df)
+    
+    # Derive Intra and Inter Primary Keys
+    df = df.withColumn(
+        "primary_key_intra", 
+        F.concat_ws("_", df["AUFNR"], df["POSNR"], df["DWERK"])
+    )
+    
+    df = df.withColumn(
+        "primary_key_inter", 
+        F.concat_ws("_", df["SOURCE_SYSTEM_ERP"], df["AUFNR"], df["POSNR"], df["DWERK"])
+    )
+    
+    # Calculate On-Time Flag
+    df = df.withColumn(
+        "on_time_flag", 
+        F.when(F.col("ZZGLTRP_ORIG") >= F.col("LTRMI"), 1)
+        .when(F.col("ZZGLTRP_ORIG") < F.col("LTRMI"), 0)
+        .otherwise(None)
+    )
+    
+    # Calculate On-Time Deviation and Late Delivery Bucket
+    df = df.withColumn(
+        "actual_on_time_deviation", 
+        F.datediff(F.col("ZZGLTRP_ORIG"), F.col("LTRMI"))
+    )
+    
+    # Categorize late delivery bucket based on deviation
+    df = df.withColumn(
+        "late_delivery_bucket", 
+        F.when(F.col("actual_on_time_deviation") <= 0, "On-Time")
+        .when(F.col("actual_on_time_deviation").between(1, 5), "Slightly Late")
+        .when(F.col("actual_on_time_deviation").between(6, 10), "Moderately Late")
+        .otherwise("Severely Late")
+    )
+    
+    # Ensure ZZGLTRP_ORIG is present (if missing, add it with null values)
+    if "ZZGLTRP_ORIG" not in df.columns:
+        df = df.withColumn("ZZGLTRP_ORIG", F.lit(None))
+    
+    # Step 5: Derive MTO vs MTS Flag
+    df = df.withColumn(
+        "mto_vs_mts_flag", 
+        F.when(F.col("KDAUF").isNotNull(), "MTO").otherwise("MTS")
+    )
+    
+    # Step 6: Convert Dates to Timestamps
+    df = df.withColumn(
+        "order_finish_timestamp", 
+        F.to_timestamp(df["LTRMI"], "yyyy-MM-dd")  # Adjust format as needed
+    )
+    
+    df = df.withColumn(
+        "order_start_timestamp", 
+        F.to_timestamp(df["GSTRI"], "yyyy-MM-dd")  # Adjust format as needed
+    )
+
     return df

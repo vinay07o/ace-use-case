@@ -39,7 +39,7 @@ activate_venv:
 	$(VENV_DIR)\Scripts\activate
 
 # Command to clean existing venv and create a new one, then install dependencies
-venv: clean-venv create_venv install_requirements install_package
+venv: create_venv install_requirements install_package
 	@echo "Virtual environment and dependencies are set up!"
 	@$(MAKE) activate_venv
 

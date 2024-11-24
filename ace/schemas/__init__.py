@@ -8,6 +8,10 @@ from .schemas import (
     MBEW_SCHEMA,
     PLANT_DATA_SCHEMA,
     VALUATION_DATA_SCHEMA,
+    AFKO_SCHEMA,
+    MARA_ORDER_SCHEMA,
+    AUFK_SCHEMA,
+    AFPO_SCHEMA,
 )
 
 __all__ = [
@@ -17,4 +21,8 @@ __all__ = [
     "PLANT_DATA_SCHEMA",
     "VALUATION_DATA_SCHEMA",
     "COMPANY_CODE_DATA_SCHEMA",
+    "AFKO_SCHEMA",
+    "MARA_ORDER_SCHEMA",
+    "AUFK_SCHEMA",
+    "AFPO_SCHEMA",
 ]
