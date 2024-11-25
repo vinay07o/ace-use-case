@@ -24,7 +24,7 @@ def process_local_material_run(args=None):
         required=True,
     )
     parser.add_argument(
-        "-o",
+        "-f",
         "--file_name",
         help="path to save output dataset.",
         required=False,
@@ -34,6 +34,7 @@ def process_local_material_run(args=None):
     process_local_material(
         data_dir=args.data_dir,
         output_dir=args.output_dir,
+        file_name=args.file_name
     )
 
 def process_order_run(args=None):
@@ -61,5 +62,5 @@ def process_order_run(args=None):
     process_order(
         data_dir=args.data_dir,
         output_dir=args.output_dir,
-        file_name=args
+        file_name=args.file_name
     )

@@ -20,3 +20,7 @@ You will work with data from two SAP systems that have similar data sources. You
 
 ### Architecture of Local Material Data
 ![Architecture Diagram](architecture/ace_modeling_v2.jpg)
+
+
+### Architecture of Process Order Data
+![Architecture Diagram](architecture/process_order_v2.jpg)

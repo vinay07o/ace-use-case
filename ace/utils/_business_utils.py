@@ -80,6 +80,7 @@ def prep_general_material_data(
     col_mara_global_material_number: str,
     check_old_material_number_is_valid: bool = True,
     check_material_is_not_deleted: bool = True,
+    schema: T.StructType = MARA_SCHEMA
 ):
     """
     Filters materials based on validity of the old material number (BISMT) and deletion flag (LVORM)
@@ -141,7 +142,7 @@ def prep_general_material_data(
     # Rename global material number column
     df = df.withColumnRenamed(col_mara_global_material_number, "global_material_number")
 
-    return enforce_schema(df, MARA_SCHEMA)
+    return enforce_schema(df, schema)
 
 
 def prep_material_valuation(df: DataFrame) -> DataFrame:

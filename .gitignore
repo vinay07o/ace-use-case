@@ -14,6 +14,7 @@ downloads
 *.egg-info/
 *.egg
 .coverage
+output/
 
 # ipython checkpoints 
 .ipynb_checkpoints

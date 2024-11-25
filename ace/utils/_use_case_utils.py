@@ -103,6 +103,8 @@ def read_file(
     if spark is None:
         spark = SparkSession.builder.appName("FileReader").getOrCreate()
 
+    spark.conf.set("spark.sql.legacy.timeParserPolicy", "LEGACY")
+
     # Read file
     reader = spark.read.format(file_format.lower())
 
@@ -247,38 +249,110 @@ def process_data(
             )
 
 
-def read_multiple_data(data_dir):
+def read_multiple_data(data_dir: str) -> dict:
+    """
+    Reads multiple data files from a specified directory and returns a dictionary of DataFrames.
+
+    This function iterates over all files in the given directory, checks their extensions, 
+    and reads them into Spark DataFrames. The DataFrames are stored in a dictionary where 
+    the key is the file name (without extension) and the value is the corresponding DataFrame.
+
+    args:
+    -----
+        data_dir (str): Path to the directory containing the data files.
+
+    Returns:
+    --------
+        dict: A dictionary where keys are file names (without extensions) and values are DataFrames.
+
+    Notes:
+    ------
+        - Currently, the function supports reading `.csv` files. If other file formats are needed, 
+          additional handling logic can be added.
+        - Assumes that the directory contains files that can be read into DataFrames.
+        - The function uses `os.path.isfile` to skip subfolders.
+
+    Example:
+    --------
+        Given a directory containing:
+        - `data1.csv`
+        - `data2.csv`
+
+        Calling `read_multiple_data("/path/to/data_dir")` will return:
+        {
+            "data1": data1.csv,
+            "data2": data2.csv
+        }
+    """
+    
+    # Initialize an empty dictionary to store DataFrames
     dataframes_dict = {}
+
+    # Iterate through each file in the provided directory
     for file_name in os.listdir(data_dir):
+        
+        # Construct the full file path
         file_path = os.path.join(data_dir, file_name)
 
-        # Check if it is a file (not a subfolder)
+        # Check if it's a file (not a subdirectory)
         if os.path.isfile(file_path):
-
-            # Extract the file name without extension
+            
+            # Extract the base name of the file (without extension) to use as the key
             base_name = os.path.splitext(file_name)[0]
 
-            # Read the file based on its extension and create DataFrame
+            # Check if the file has a .csv extension and read it into a DataFrame
             if file_name.endswith('.csv'):
+                # Assume read_file is a function defined elsewhere to handle reading files into DataFrames
                 df = read_file(file_path, "csv", {"header": "true", "inferSchema": "true"})
 
-        dataframes_dict.update({base_name: df})
+            # Store the DataFrame in the dictionary with the file's base name as the key
+            dataframes_dict.update({base_name: df})
     
+    # Return the dictionary containing all DataFrames
     return dataframes_dict
 
 
-def save_df_as_csv(df: DataFrame, output_dir:  str, file_name: str):
+def save_df_as_csv(df: DataFrame, output_dir: str, file_name: str):
+    """
+    Saves a given DataFrame as a CSV file in the specified output directory.
 
-    # Check input parameter
+    This function checks if the file name has the `.csv` extension. If it doesn't, the extension is added. 
+    The DataFrame is first written to a temporary directory, and the resulting file is renamed to match 
+    the desired output file name. After the file is moved, the temporary directory is removed to clean up.
+
+    args:
+    -----
+        df (DataFrame): The DataFrame to be saved.
+        output_dir (str): The directory where the CSV file will be saved.
+        file_name (str): The desired name for the output CSV file.
+
+    Notes:
+    ------
+        - The DataFrame is coalesced into a single partition before being written to the CSV file.
+        - If the `file_name` does not already end with `.csv`, the extension is automatically added.
+        - The file is written temporarily to a folder named `temp_output` within the specified `output_dir`, 
+          and the resulting file is renamed before cleaning up the temporary directory.
+
+    Example:
+    --------
+        To save a DataFrame `df` to `/path/to/output/` with the name `data.csv`:
+        >>> save_df_as_csv(df, "/path/to/output", "data.csv")
+    """
+    
+    # Check input parameters
     process_data(dataframe_check=df, string_check=output_dir)
 
+    # Ensure the file name has a .csv extension
     if file_name.split(".")[-1] == "csv":
         file_name = file_name.split(".")[0]
-    # Write DataFrame to a temporary directory
+
+    # Define a temporary directory to write the CSV
     temp_dir = f"{output_dir}/temp_output"
+
+    # Write the DataFrame to the temporary directory
     df.coalesce(1).write.option("header", "true").csv(temp_dir)
 
-    # Rename the resulting file to the desired name
+    # Rename the output file to the desired file name
     for file in os.listdir(temp_dir):
         if file.startswith("part-"):
             shutil.move(f"{temp_dir}/{file}", f"{output_dir}/{file_name}.csv")
@@ -287,4 +361,126 @@ def save_df_as_csv(df: DataFrame, output_dir:  str, file_name: str):
     # Clean up by removing the temporary directory
     shutil.rmtree(temp_dir)
 
-    print(f"successfully saved local_material.csv in {output_dir}")
+    print(f"Successfully saved {file_name}.csv in {output_dir}")
+
+
+def rename_and_select(df: DataFrame, mapping: dict, select: bool = True) -> DataFrame:
+    """
+    Method that takes a given df, applies a specific renaming mapping, and returns the new dataframe with the renamed
+    columns. If select is True, the function will also select only the columns that exist in the mapping. Otherwise, it
+    will return all the columns, but only rename the mapped ones.
+
+    args:
+    -----
+    - df: The dataframe to renamed
+    - mapping: a dictionary that contains a mapping from the original name to the new name
+    - select: True if the only the mapped columns should be selected, False otherwise
+
+    Returns:
+    --------
+        The dataframe with the applied mappings.
+
+    Example:
+    >>> # Suppose you have a DataFrame `df` and you want to rename and select columns as per the mapping:
+    >>> df = spark.createDataFrame(
+                        data=[
+                            ("a", 1, "A", 10, "aa", 100),
+                            ("b", 2, "B", 20, "bb", 200),
+                        ],
+                        schema=[
+                            "col_to_keep_1",
+                            "col_to_keep_2",
+                            "col_to_rename_1_old_name",
+                            "col_to_rename_2_old_name",
+                            "col_to_delete_1",
+                            "col_to_delete_2",
+                        ],
+                    )
+    >>> df.show()
+    +-------------+-------------+------------------------+------------------------+---------------+---------------+
+    |col_to_keep_1|col_to_keep_2|col_to_rename_1_old_name|col_to_rename_2_old_name|col_to_delete_1|col_to_delete_2|
+    +-------------+-------------+------------------------+------------------------+---------------+---------------+
+    |            a|            1|                       A|                      10|             aa|            100|
+    |            b|            2|                       B|                      20|             bb|            200|
+    +-------------+-------------+------------------------+------------------------+---------------+---------------+
+    >>> mapping={
+            "col_to_keep_1": "col_to_keep_1",
+            "col_to_keep_2": "col_to_keep_2",
+            "col_to_rename_1_old_name": "col_to_rename_1_new_name",
+            "col_to_rename_2_old_name": "col_to_rename_2_new_name",
+        },
+    >>> result = rename_and_select(df, mapping)
+    >>> result.show()
+    +-------------+-------------+------------------------+------------------------+
+    |col_to_keep_1|col_to_keep_2|col_to_rename_1_new_name|col_to_rename_2_new_name|
+    +-------------+-------------+------------------------+------------------------+
+    |            a|            1|                       A|                      10|
+    |            b|            2|                       B|                      20|
+    +-------------+-------------+------------------------+------------------------+
+
+    """
+    for col in mapping:
+        df = df.withColumnRenamed(col, mapping[col])
+    if select:
+        df = df.select(*mapping.values())
+    return df
+
+
+def add_missing_columns(df, schema: T.StructType) -> DataFrame:
+    """
+    Add missing columns to a PySpark DataFrame with null values.
+
+    args:
+    -----
+    - columns: List of column names to check and add if missing
+
+    Returns:
+    --------
+        PySpark DataFrame with added columns
+
+    Example:
+    >>> # Suppose you have a DataFrame `df` and missed some columns that you want to add with null values.
+    >>> df = spark.createDataFrame(
+                        data=[
+                                ("John", 25),
+                                ("Alice", 30)
+                            ],
+                        schema=[
+                                "name", "age"
+                                ]
+                        )
+    >>> df.show()
+    +-----+---+
+    | name|age|
+    +-----+---+
+    | John| 25|
+    |Alice| 30|
+    +-----+---+
+    >>> schema = T.StructType(
+                                [
+                                    T.StructField("name", T.StringType()),
+                                    T.StructField("age", T.StringType()),
+                                    T.StructField("gender", T.StringType()),
+                                    T.StructField("city", T.StringType()),
+                                ]
+                            )
+    >>> result = add_missing_columns(df, schema)
+    >>> result.show()
+    +-----+---+----+------+
+    | name|age|city|gender|
+    +-----+---+----+------+
+    | John| 25|null|  null|
+    |Alice| 30|null|  null|
+    +-----+---+----+------+
+
+    """
+    existing_columns = df.columns
+
+    # Identify missing columns
+    missing_columns = [col for col in schema if col.name not in existing_columns]
+
+    # Add missing columns with null values
+    for missing_col in missing_columns:
+        df = df.withColumn(missing_col.name, F.lit(None).cast("string"))
+
+    return df

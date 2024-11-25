@@ -22,6 +22,8 @@ from ._use_case_utils import (
     read_file,
     read_multiple_data,
     save_df_as_csv,
+    rename_and_select,
+    add_missing_columns,
 )
 
 __all__ = [
@@ -43,4 +45,6 @@ __all__ = [
     "prep_order_header_data",
     "read_multiple_data",
     "save_df_as_csv",
+    "rename_and_select",
+    "add_missing_columns",
 ]
