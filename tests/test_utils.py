@@ -23,7 +23,7 @@ class TestReadFile:
     )
     def test_valid_files(
         self,
-        spark,
+        spark_session,
         test_data_dir,
         file_name,
         file_format,
@@ -33,17 +33,17 @@ class TestReadFile:
     ):
         """Test reading valid files."""
         file_path = os.path.join(test_data_dir, file_name)
-        df = read_file(file_path, file_format, options, spark)
+        df = read_file(file_path, file_format, options, spark_session)
         print(df.show())
         assert df.count() == expected_rows  # Check row count
         assert expected_column in df.columns  # Check for expected column
 
     @pytest.mark.parametrize("file_format", ["xml", "txt", "unsupported_format"])
-    def test_invalid_file_format(self, spark, test_data_dir, file_format):
+    def test_invalid_file_format(self, spark_session, test_data_dir, file_format):
         """Test unsupported file formats."""
         file_path = os.path.join(test_data_dir, "sample.csv")
         with pytest.raises(ValueError, match="Unsupported file format"):
-            read_file(file_path, file_format, None, spark)
+            read_file(file_path, file_format, None, spark_session)
 
     @pytest.mark.parametrize(
         "file_name, file_format, options, expected_errortype, expected_messege",
@@ -95,11 +95,13 @@ class TestReadFile:
         with pytest.raises(expected_errortype, match=expected_messege):
             read_file(file_name, file_format, options, None)
 
-    # def test_enforce_schema(
-    #     basic_input, enforce_schema_input_schema, enforce_schema_expected_output
-    # ):
-    #     result = enforce_schema(basic_input, schema=enforce_schema_input_schema)
-    #     compare_dataframes(result, enforce_schema_expected_output)
+    def test_enforce_schema(
+        self, 
+        basic_input,
+        enforce_schema_input_schema,
+    ):
+        result = enforce_schema(basic_input, schema=enforce_schema_input_schema)
+        # compare_dataframes(result, enforce_schema_expected_output)
 
-    #     # Additional check to see if the column types and the order is matching
-    #     assert result.schema == enforce_schema_expected_output.schema
+        # Additional check to see if the column types and the order is matching
+        # assert result.schema == enforce_schema_expected_output.schema

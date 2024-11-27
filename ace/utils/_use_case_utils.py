@@ -104,6 +104,8 @@ def read_file(
         spark = SparkSession.builder.appName("FileReader").getOrCreate()
 
     spark.conf.set("spark.sql.legacy.timeParserPolicy", "LEGACY")
+    spark.conf.set("spark.sql.debug.maxToStringFields", 1000)
+
 
     # Read file
     reader = spark.read.format(file_format.lower())
