@@ -106,7 +106,6 @@ def read_file(
     spark.conf.set("spark.sql.legacy.timeParserPolicy", "LEGACY")
     spark.conf.set("spark.sql.debug.maxToStringFields", 1000)
 
-
     # Read file
     reader = spark.read.format(file_format.lower())
 
@@ -255,8 +254,8 @@ def read_multiple_data(data_dir: str) -> dict:
     """
     Reads multiple data files from a specified directory and returns a dictionary of DataFrames.
 
-    This function iterates over all files in the given directory, checks their extensions, 
-    and reads them into Spark DataFrames. The DataFrames are stored in a dictionary where 
+    This function iterates over all files in the given directory, checks their extensions,
+    and reads them into Spark DataFrames. The DataFrames are stored in a dictionary where
     the key is the file name (without extension) and the value is the corresponding DataFrame.
 
     args:
@@ -269,7 +268,7 @@ def read_multiple_data(data_dir: str) -> dict:
 
     Notes:
     ------
-        - Currently, the function supports reading `.csv` files. If other file formats are needed, 
+        - Currently, the function supports reading `.csv` files. If other file formats are needed,
           additional handling logic can be added.
         - Assumes that the directory contains files that can be read into DataFrames.
         - The function uses `os.path.isfile` to skip subfolders.
@@ -286,30 +285,32 @@ def read_multiple_data(data_dir: str) -> dict:
             "data2": data2.csv
         }
     """
-    
+
     # Initialize an empty dictionary to store DataFrames
     dataframes_dict = {}
 
     # Iterate through each file in the provided directory
     for file_name in os.listdir(data_dir):
-        
+
         # Construct the full file path
         file_path = os.path.join(data_dir, file_name)
 
         # Check if it's a file (not a subdirectory)
         if os.path.isfile(file_path):
-            
+
             # Extract the base name of the file (without extension) to use as the key
             base_name = os.path.splitext(file_name)[0]
 
             # Check if the file has a .csv extension and read it into a DataFrame
-            if file_name.endswith('.csv'):
+            if file_name.endswith(".csv"):
                 # Assume read_file is a function defined elsewhere to handle reading files into DataFrames
-                df = read_file(file_path, "csv", {"header": "true", "inferSchema": "true"})
+                df = read_file(
+                    file_path, "csv", {"header": "true", "inferSchema": "true"}
+                )
 
             # Store the DataFrame in the dictionary with the file's base name as the key
             dataframes_dict.update({base_name: df})
-    
+
     # Return the dictionary containing all DataFrames
     return dataframes_dict
 
@@ -318,8 +319,8 @@ def save_df_as_csv(df: DataFrame, output_dir: str, file_name: str):
     """
     Saves a given DataFrame as a CSV file in the specified output directory.
 
-    This function checks if the file name has the `.csv` extension. If it doesn't, the extension is added. 
-    The DataFrame is first written to a temporary directory, and the resulting file is renamed to match 
+    This function checks if the file name has the `.csv` extension. If it doesn't, the extension is added.
+    The DataFrame is first written to a temporary directory, and the resulting file is renamed to match
     the desired output file name. After the file is moved, the temporary directory is removed to clean up.
 
     args:
@@ -332,7 +333,7 @@ def save_df_as_csv(df: DataFrame, output_dir: str, file_name: str):
     ------
         - The DataFrame is coalesced into a single partition before being written to the CSV file.
         - If the `file_name` does not already end with `.csv`, the extension is automatically added.
-        - The file is written temporarily to a folder named `temp_output` within the specified `output_dir`, 
+        - The file is written temporarily to a folder named `temp_output` within the specified `output_dir`,
           and the resulting file is renamed before cleaning up the temporary directory.
 
     Example:
@@ -340,7 +341,7 @@ def save_df_as_csv(df: DataFrame, output_dir: str, file_name: str):
         To save a DataFrame `df` to `/path/to/output/` with the name `data.csv`:
         >>> save_df_as_csv(df, "/path/to/output", "data.csv")
     """
-    
+
     # Check input parameters
     process_data(dataframe_check=df, string_check=output_dir)
 
@@ -490,27 +491,27 @@ def add_missing_columns(df, schema: T.StructType) -> DataFrame:
 
 def union_many(data_path: list[str], output_dir, file_name):
     """
-    This function reads multiple CSV files from specified paths, 
+    This function reads multiple CSV files from specified paths,
     unions them into a single DataFrame, and saves the result as a CSV file.
 
     Args:
     - data_path (list[str]): A list of file paths to the CSV files that need to be read and united.
     - output_dir (str): The directory where the final CSV file will be saved.
     - file_name (str): The name of the output CSV file.
-    
+
     Returns:
     None
     """
-    
+
     # Initialize an empty list to store the DataFrames read from files
     dfs_list = []
-    
+
     # Loop over each file path in data_path and read the file into a DataFrame
     for data in data_path:
         # Use the read_file function to read each CSV file
         # Assuming the read_file function takes a path, format, and options for reading CSVs
         df = read_file(data, "csv", {"header": "true"})
-        
+
         # Append each DataFrame to the list
         dfs_list.append(df)
 
@@ -518,10 +519,12 @@ def union_many(data_path: list[str], output_dir, file_name):
     union_df = dfs_list[0]
 
     if len(data_path) > 1:
-    
+
         # Union all remaining DataFrames in the list
         for df in dfs_list[1:]:
-            union_df = union_df.union(df)  # Combine current DataFrame with the union so far
+            union_df = union_df.union(
+                df
+            )  # Combine current DataFrame with the union so far
 
     # Save the final united DataFrame as a CSV file to the specified output directory
     save_df_as_csv(union_df, output_dir, file_name)

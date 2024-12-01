@@ -46,11 +46,21 @@ Date:
     11/13/2024
 
 """
+
 # Pyspark import
 import pyspark.sql.functions as F
 
+from ace.schemas import (
+    LOCAL_MATERIAL_SCHEMA_WITH_RELAVENT_NAMES,
+    UNIFIED_SCHEMA,
+)
+
 # Import Custom utils
 from ace.utils import (
+    add_missing_columns,
+    enforce_schema,
+    integrate_data,
+    post_prep_local_material,
     prep_company_codes,
     prep_general_material_data,
     prep_material_valuation,
@@ -58,17 +68,14 @@ from ace.utils import (
     prep_plant_data_for_material,
     prep_valuation_area,
     read_multiple_data,
-    integrate_data,
-    post_prep_local_material,
-    save_df_as_csv,
-    enforce_schema,
-    add_missing_columns,
     rename_and_select,
+    save_df_as_csv,
 )
-from ace.schemas import UNIFIED_SCHEMA, LOCAL_MATERIAL_SCHEMA_WITH_RELAVENT_NAMES
 
 
-def process_local_material(data_dir: str, system_name: str, output_dir: str, file_name: str):
+def process_local_material(
+    data_dir: str, system_name: str, output_dir: str, file_name: str
+):
     """
     Processes local material data by reading input files, applying transformations, and integrating data.
 
@@ -117,41 +124,43 @@ def process_local_material(data_dir: str, system_name: str, output_dir: str, fil
     """
 
     for base_name, df in read_multiple_data(data_dir).items():
-            # Dynamically assign the DataFrame to a variable with the same name as the file (without extension)
-            globals()[base_name.split("_")[-1]] = df
+        # Dynamically assign the DataFrame to a variable with the same name as the file (without extension)
+        globals()[base_name.split("_")[-1]] = df
 
     # Process the general material data from the PRE_MARA dataset and assign the result to a DataFrame
     processed_mara_df = prep_general_material_data(MARA, "ZZMDGM")
-    
+
     # Process the material valuation data from the PRE_MBEW dataset
     processed_mbew_df = prep_material_valuation(MBEW)
-    
+
     # Process the plant data for materials from the PRE_MARC dataset
     processed_marc_df = prep_plant_data_for_material(MARC)
-    
+
     # Process the plant and branch information from the PRE_T001W dataset
     processed_t001w_df = prep_plant_and_branches(T001W)
-    
+
     # Process the valuation area data from the PRE_T001K dataset
     processed_t001k_df = prep_valuation_area(T001K)
-    
+
     # Process the company codes data from the PRE_T001 dataset
     processed_t001_df = prep_company_codes(T001)
 
     # Integrate all the processed datasets into a single DataFrame
     integrated_data = integrate_data(
-        processed_marc_df,   # Plant data for materials
-        processed_mara_df,   # General material data
-        processed_mbew_df,   # Material valuation data
+        processed_marc_df,  # Plant data for materials
+        processed_mara_df,  # General material data
+        processed_mbew_df,  # Material valuation data
         processed_t001w_df,  # Plant and branch information
         processed_t001k_df,  # Valuation area data
-        processed_t001_df,   # Company codes data
+        processed_t001_df,  # Company codes data
     )
 
     # Apply post-processing transformations on the integrated data
     local_material = post_prep_local_material(integrated_data)
 
-    local_material = rename_and_select(local_material, LOCAL_MATERIAL_SCHEMA_WITH_RELAVENT_NAMES, False)
+    local_material = rename_and_select(
+        local_material, LOCAL_MATERIAL_SCHEMA_WITH_RELAVENT_NAMES, False
+    )
     local_material = enforce_schema(local_material, UNIFIED_SCHEMA)
     local_material = add_missing_columns(local_material, UNIFIED_SCHEMA)
 

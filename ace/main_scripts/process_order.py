@@ -85,34 +85,36 @@ Date:
 -----
     11/13/2024
 """
+
 # Pyspark import
 import pyspark.sql.functions as F
 
+from ace.schemas import (
+    AFPO_SCHEMA,
+    AUFK_SCHEMA,
+    MARA_ORDER_SCHEMA,
+    PROCESS_ORDER_SCHEMA_WITH_RELAVENT_NAMES,
+    UNIFIED_SCHEMA,
+)
+
 # Import Custom utils
 from ace.utils import (
-    prep_general_material_data,
+    add_missing_columns,
     dataframe_with_enforced_schema,
-    prep_order_header_data,
+    enforce_schema,
     integration_order,
     post_prep_process_order,
+    prep_general_material_data,
+    prep_order_header_data,
     read_multiple_data,
-    save_df_as_csv,
-    enforce_schema,
-    add_missing_columns,
     rename_and_select,
-)
-from ace.schemas import (
-    AUFK_SCHEMA,
-    AFPO_SCHEMA,
-    MARA_ORDER_SCHEMA,
-    UNIFIED_SCHEMA,
-    PROCESS_ORDER_SCHEMA_WITH_RELAVENT_NAMES
+    save_df_as_csv,
 )
 
 
 def process_order(data_dir: str, system_name: str, output_dir: str, file_name: str):
     """
-    Processes order data by reading multiple datasets, applying preprocessing, integrating data, 
+    Processes order data by reading multiple datasets, applying preprocessing, integrating data,
     and performing post-processing transformations.
 
     args:
@@ -128,7 +130,7 @@ def process_order(data_dir: str, system_name: str, output_dir: str, file_name: s
 
     Steps:
     ------
-        1. Reads multiple input datasets from the specified `data_dir` and assigns them to dynamically 
+        1. Reads multiple input datasets from the specified `data_dir` and assigns them to dynamically
            created variables based on their base filenames.
         2. Preprocesses individual datasets:
             - `AFKO`: Order Header Data
@@ -158,7 +160,6 @@ def process_order(data_dir: str, system_name: str, output_dir: str, file_name: s
         # Assign DataFrame to a variable based on the base filename (e.g., AFPO, AUFK, etc.)
         globals()[base_name.split("_")[-1]] = df
 
-
     # Preprocess order header data (sap_afko)
     processed_afko_df = prep_order_header_data(AFKO)
 
@@ -169,7 +170,9 @@ def process_order(data_dir: str, system_name: str, output_dir: str, file_name: s
     processed_aufk_df = dataframe_with_enforced_schema(AUFK, AUFK_SCHEMA)
 
     # Preprocess general material data (sap_mara)
-    processed_mara_df = prep_general_material_data(df=MARA, col_mara_global_material_number="ZZMDGM", schema=MARA_ORDER_SCHEMA)
+    processed_mara_df = prep_general_material_data(
+        df=MARA, col_mara_global_material_number="ZZMDGM", schema=MARA_ORDER_SCHEMA
+    )
 
     # Integrate all preprocessed datasets
     integrated_df = integration_order(
@@ -182,12 +185,14 @@ def process_order(data_dir: str, system_name: str, output_dir: str, file_name: s
     # Apply post-processing transformations on the integrated data
     process_order = post_prep_process_order(integrated_df)
 
-    process_order = rename_and_select(process_order, PROCESS_ORDER_SCHEMA_WITH_RELAVENT_NAMES, select=False)
+    process_order = rename_and_select(
+        process_order, PROCESS_ORDER_SCHEMA_WITH_RELAVENT_NAMES, select=False
+    )
 
     process_order = enforce_schema(process_order, UNIFIED_SCHEMA)
     process_order = add_missing_columns(process_order, UNIFIED_SCHEMA)
 
-    local_material = local_material.withColumn("system_name", F.lit(system_name))
+    process_order = process_order.withColumn("system_name", F.lit(system_name))
 
     # Save the final processed DataFrame as a CSV file
     save_df_as_csv(process_order, output_dir, file_name)

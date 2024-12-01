@@ -44,7 +44,7 @@ You will work with data from two SAP systems that have similar data sources. You
 
 Ensure the following are installed:
 
-* Java 11 or later:
+* Java 17:
     ```bash
     java --version
 
@@ -60,7 +60,7 @@ Ensure the following are installed:
 ### Step 3: Configure the Project
 1. Navigate to the project folder:
     ```bash
-    cd <project-folder>
+    cd ace-use-case
 
 ### Step 4: Setup Virtual Environment
 * Create a vertual Environment
@@ -78,17 +78,24 @@ Ensure the following are installed:
 
 * Pass input and output paths with master function
     ```bash
-    local_material_run --data_dir ace/data/system_1 --output_dir output --file_name local_matrial_system_1
+    local_material_run --data_dir ace/data/system_1 --system_name system_1 --output_dir output --file_name local_matrial_system_1
 
-    local_material_run --data_dir ace/data/system_2 --output_dir output --file_name local_matrial_system_2
+    local_material_run --data_dir ace/data/system_2 --system_name system_2 --output_dir output --file_name local_matrial_system_2
 
-### Step 1: Execute process order dataset from any system
+### Step 6: Execute process order dataset from any system
 * Pass input and output paths with master function
     ```bash
-    process_order_run ----data_dir ace/data/system_1 --output_dir output --file_name process_order_system_1
+    process_order_run --data_dir ace/data/system_1 --system_name system_1 --output_dir output --file_name process_order_system_1
 
-    process_order_run ----data_dir ace/data/system_2 --output_dir output --file_name process_order_system_2
+    process_order_run --data_dir ace/data/system_2 --system_name system_2 --output_dir output --file_name process_order_system_2
 
+
+### Step 7: If you want to union multiple system dataset use below command (optional)
+* Pass any model different systems dataset
+    ```bash
+    union_datasets --data_path output/local_matrial_system_2.csv output/local_matrial_system_1.csv --output_dir output -file_name local_material
+
+    union_datasets --data_path output/process_order_system_2.csv output/process_order_system_1.csv --output_dir output -file_name process_order
 
 ## Steps to run execute test cases and code coverage
     This step is not directly involved in generating the final output but is essential to ensure the project meets acceptance criteria. It verifies the functionality of the final product and evaluates code coverage, serving as a mandatory acceptance test for any data-driven products.

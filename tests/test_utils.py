@@ -96,12 +96,12 @@ class TestReadFile:
             read_file(file_name, file_format, options, None)
 
     # def test_enforce_schema(
-    #     self, 
+    #     self,
     #     basic_input,
     #     enforce_schema_input_schema,
     # ):
     #     result = enforce_schema(basic_input, schema=enforce_schema_input_schema)
-        # compare_dataframes(result, enforce_schema_expected_output)
+    # compare_dataframes(result, enforce_schema_expected_output)
 
-        # Additional check to see if the column types and the order is matching
-        # assert result.schema == enforce_schema_expected_output.schema
+    # Additional check to see if the column types and the order is matching
+    # assert result.schema == enforce_schema_expected_output.schema

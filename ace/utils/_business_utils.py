@@ -64,13 +64,13 @@ from pyspark.sql.window import Window
 
 # Custom utils imports
 from ace.schemas import (
+    AFKO_SCHEMA,
     COMPANY_CODE_DATA_SCHEMA,
     MARA_SCHEMA,
     MARC_SCHEMA,
     MBEW_SCHEMA,
     PLANT_DATA_SCHEMA,
     VALUATION_DATA_SCHEMA,
-    AFKO_SCHEMA,
 )
 from ace.utils._use_case_utils import enforce_schema, process_data
 
@@ -80,7 +80,7 @@ def prep_general_material_data(
     col_mara_global_material_number: str,
     check_old_material_number_is_valid: bool = True,
     check_material_is_not_deleted: bool = True,
-    schema: T.StructType = MARA_SCHEMA
+    schema: T.StructType = MARA_SCHEMA,
 ):
     """
     Filters materials based on validity of the old material number (BISMT) and deletion flag (LVORM)
@@ -346,69 +346,69 @@ def integrate_data(
     sap_mbew: DataFrame,
     sap_t001w: DataFrame,
     sap_t001k: DataFrame,
-    sap_t001: DataFrame
+    sap_t001: DataFrame,
 ) -> DataFrame:
     """
-    Integrates multiple SAP DataFrames (Material Data, Valuation Data, Plant Data, etc.) 
+    Integrates multiple SAP DataFrames (Material Data, Valuation Data, Plant Data, etc.)
     by performing left joins based on specified columns.
 
     args:
     -----
     - sap_marc : DataFrame
-        The DataFrame containing Plant Data for Material (sap_marc). 
+        The DataFrame containing Plant Data for Material (sap_marc).
         Required columns: MATNR, MANDT, WERKS, etc.
-        
+
     - sap_mara : DataFrame
-        The DataFrame containing General Material Data (sap_mara). 
+        The DataFrame containing General Material Data (sap_mara).
         Required columns: MATNR, MANDT, etc.
-        
+
     - sap_mbew : DataFrame
-        The DataFrame containing Material Valuation Data (sap_mbew). 
+        The DataFrame containing Material Valuation Data (sap_mbew).
         Required columns: MATNR, MANDT, BWKEY, etc.
-        
+
     - sap_t001w : DataFrame
-        The DataFrame containing Plant and Branches Data (sap_t001w). 
+        The DataFrame containing Plant and Branches Data (sap_t001w).
         Required columns: MANDT, WERKS, NAME1, etc.
-        
+
     - sap_t001k : DataFrame
-        The DataFrame containing Valuation Area Data (sap_t001k). 
+        The DataFrame containing Valuation Area Data (sap_t001k).
         Required columns: MANDT, BWKEY, BUKRS, etc.
-        
+
     - sap_t001 : DataFrame
-        The DataFrame containing Company Codes Data (sap_t001). 
+        The DataFrame containing Company Codes Data (sap_t001).
         Required columns: MANDT, BUKRS, WAERS, etc.
 
     Returns:
     --------
     DataFrame
-        A DataFrame resulting from the integration of all provided datasets through left joins, 
+        A DataFrame resulting from the integration of all provided datasets through left joins,
         containing information from all input DataFrames with matched columns.
 
     Transformation Steps:
     ---------------------
     1. **Start with `sap_marc`**: This is the base DataFrame containing the main plant and material data.
-    2. **Left join `sap_mara`**: Join `sap_marc` with `sap_mara` on the `MATNR` column (Material Number) 
-       to add general material information. This join ensures all records in `sap_marc` are preserved, 
+    2. **Left join `sap_mara`**: Join `sap_marc` with `sap_mara` on the `MATNR` column (Material Number)
+       to add general material information. This join ensures all records in `sap_marc` are preserved,
        even if no matching record exists in `sap_mara`.
-    3. **Left join `sap_t001w`**: Join the result of the previous join with `sap_t001w` on `MANDT` (Client) 
+    3. **Left join `sap_t001w`**: Join the result of the previous join with `sap_t001w` on `MANDT` (Client)
        and `WERKS` (Plant) columns to add plant-specific information.
-    4. **Left join `sap_mbew`**: Join the result with `sap_mbew` on `MANDT`, `MATNR`, and `BWKEY` (Valuation Area) 
+    4. **Left join `sap_mbew`**: Join the result with `sap_mbew` on `MANDT`, `MATNR`, and `BWKEY` (Valuation Area)
        to add valuation-related data.
-    5. **Left join `sap_t001k`**: Join the result with `sap_t001k` on `MANDT` and `BWKEY` (Valuation Area) 
+    5. **Left join `sap_t001k`**: Join the result with `sap_t001k` on `MANDT` and `BWKEY` (Valuation Area)
        to add valuation area information.
-    6. **Left join `sap_t001`**: Join the result with `sap_t001` on `MANDT` (Client) and `BUKRS` (Company Code) 
+    6. **Left join `sap_t001`**: Join the result with `sap_t001` on `MANDT` (Client) and `BUKRS` (Company Code)
        to add company-specific data.
-    7. **Preserve all records**: All joins are left joins, meaning no data from the main dataset (`sap_marc`) 
+    7. **Preserve all records**: All joins are left joins, meaning no data from the main dataset (`sap_marc`)
        is discarded, ensuring a comprehensive merged dataset.
-    8. **Return the integrated DataFrame**: The final DataFrame will contain columns from all the input 
+    8. **Return the integrated DataFrame**: The final DataFrame will contain columns from all the input
        DataFrames with matched and joined data, preserving all records from `sap_marc`.
 
     Notes:
     ------
-    - Be mindful of column name conflicts between DataFrames (e.g., `MANDT` exists in multiple DataFrames). 
+    - Be mindful of column name conflicts between DataFrames (e.g., `MANDT` exists in multiple DataFrames).
       You may need to rename these columns before performing the joins if necessary.
     - Ensure that the columns you are joining on exist in the provided DataFrames.
-    - The resulting DataFrame may have additional columns that are not in the original `sap_marc`. 
+    - The resulting DataFrame may have additional columns that are not in the original `sap_marc`.
       Review the final dataset carefully to ensure it meets downstream requirements.
     """
     # Check input parameter
@@ -420,32 +420,32 @@ def integrate_data(
 
     # Join with sap_t001w on MANDT and WERKS
     df_integrated = df_integrated.join(sap_t001w, ["MANDT", "WERKS"], "left")
-    
+
     # Join with sap_mbew on MANDT, MATNR, and BWKEY
     df_integrated = df_integrated.join(sap_mbew, ["MANDT", "MATNR", "BWKEY"], "left")
-    
+
     # Join with sap_t001k on MANDT and BWKEY
     df_integrated = df_integrated.join(sap_t001k, ["MANDT", "BWKEY"], "left")
-    
+
     # Join with sap_t001 on MANDT and BUKRS
     df_integrated = df_integrated.join(sap_t001, ["MANDT", "BUKRS"], "left")
-    
+
     return df_integrated
 
 
 def derive_intra_and_inter_primary_key(df: DataFrame) -> DataFrame:
     """
     Derives the primary keys for intra-system and inter-system harmonized views.
-    
+
     This function creates two primary keys:
     - Primary Key (intra): Concatenation of MATNR and WERKS (Material Number and Plant)
     - Primary Key (inter): Concatenation of SOURCE_SYSTEM_ERP, MATNR, and WERKS
-    
+
     args:
     -----
     - df : DataFrame
         The DataFrame containing the necessary columns to derive the primary keys.
-        
+
     Returns:
     --------
     DataFrame
@@ -456,30 +456,27 @@ def derive_intra_and_inter_primary_key(df: DataFrame) -> DataFrame:
     process_data(dataframe_check=df)
 
     # Derive the primary key for intra-system matching (MATNR + WERKS)
-    df = df.withColumn(
-        "primary_key_intra", 
-        F.concat_ws("-", df["MATNR"], df["WERKS"])
-    )
-    
+    df = df.withColumn("primary_key_intra", F.concat_ws("-", df["MATNR"], df["WERKS"]))
+
     # Derive the primary key for inter-system matching (SOURCE_SYSTEM_ERP + MATNR + WERKS)
     df = df.withColumn(
-        "primary_key_inter", 
-        F.concat_ws("-", df["SOURCE_SYSTEM_ERP"], df["MATNR"], df["WERKS"])
+        "primary_key_inter",
+        F.concat_ws("-", df["SOURCE_SYSTEM_ERP"], df["MATNR"], df["WERKS"]),
     )
-    
+
     return df
 
 
 def post_prep_local_material(df: DataFrame) -> DataFrame:
     """
     Post-processing transformation for local material data after integration.
-    
+
     This function performs several transformations on the DataFrame including:
     - Concatenating WERKS and NAME1 with a hyphen to create 'mtl_plant_emd'
     - Assigning global_mtl_id from MATNR or GLOBAL_MATERIAL_NUMBER
     - Deriving intra-system and inter-system primary keys
     - Handling duplicates by adding a duplicate count column and removing duplicate records
-    
+
     Parameters:
     -----------
     df : DataFrame
@@ -499,25 +496,27 @@ def post_prep_local_material(df: DataFrame) -> DataFrame:
     df = df.withColumn("mtl_plant_emd", F.concat_ws("-", df["WERKS"], df["NAME1"]))
 
     # Assign global_mtl_id from MATNR or the global material number
-    df = df.withColumn("global_mtl_id", F.coalesce(df["MATNR"], df["GLOBAL_MATERIAL_NUMBER"]))
-    
+    df = df.withColumn(
+        "global_mtl_id", F.coalesce(df["MATNR"], df["GLOBAL_MATERIAL_NUMBER"])
+    )
+
     # Derive primary keys (intra and inter)
     df = derive_intra_and_inter_primary_key(df)
-    
+
     # Create a temporary column to count the number of duplicates based on the relevant keys (SOURCE_SYSTEM_ERP, MATNR, WERKS)
     window_spec = Window.partitionBy("SOURCE_SYSTEM_ERP", "MATNR", "WERKS")
     df = df.withColumn("no_of_duplicates", F.count("*").over(window_spec))
-    
+
     # Drop duplicates based on SOURCE_SYSTEM_ERP, MATNR, and WERKS
     df = df.dropDuplicates(["SOURCE_SYSTEM_ERP", "MATNR", "WERKS"])
-    
+
     return df
 
 
 def prep_order_header_data(df: DataFrame) -> DataFrame:
     """
     Prepares and transforms the SAP AFKO table (Order Header Data) for further processing.
-    
+
     args:
     -----
     - `df` (DataFrame): Input DataFrame containing SAP AFKO order header data.
@@ -531,13 +530,15 @@ def prep_order_header_data(df: DataFrame) -> DataFrame:
 
     # Format GSTRP to create start_date
     df = df.withColumn(
-                "start_date", F.when(
-                F.col("GSTRP").isNull(),
-                F.date_format(F.current_date(), "yyyy-MM"),
-                ).otherwise(F.date_format("GSTRP", "yyyy-MM")))
-    
+        "start_date",
+        F.when(
+            F.col("GSTRP").isNull(),
+            F.date_format(F.current_date(), "yyyy-MM"),
+        ).otherwise(F.date_format("GSTRP", "yyyy-MM")),
+    )
+
     df = df.withColumn("start_date", F.concat_ws("-", F.col("start_date"), F.lit("01")))
-    
+
     return enforce_schema(df, AFKO_SCHEMA)
 
 
@@ -545,26 +546,26 @@ def dataframe_with_enforced_schema(df: DataFrame, schema: T.StructType):
     """
     Enforces a given schema on the input DataFrame by selecting the required columns.
 
-    This function first validates the input DataFrame using the `process_data` function, 
+    This function first validates the input DataFrame using the `process_data` function,
     then applies the specified schema to ensure that the DataFrame conforms to the expected structure.
-    
+
     Args:
         df (DataFrame): The input PySpark DataFrame to which the schema will be applied.
-        schema (T.StructType): The schema to enforce on the DataFrame, typically defined 
+        schema (T.StructType): The schema to enforce on the DataFrame, typically defined
                                using PySpark's `StructType`.
 
     Returns:
         DataFrame: A new DataFrame that has been transformed to match the enforced schema.
-    
+
     Example:
         schema = StructType([
             StructField("column1", StringType(), True),
             StructField("column2", IntegerType(), True)
         ])
-        
+
         df_transformed = dataframe_with_enforced_schema(df, schema)
     """
-    
+
     # Check input parameter
     process_data(dataframe_check=df)
 
@@ -574,7 +575,13 @@ def dataframe_with_enforced_schema(df: DataFrame, schema: T.StructType):
     return df
 
 
-def integration_order(sap_afko: DataFrame, sap_afpo: DataFrame, sap_aufk: DataFrame, sap_mara: DataFrame, sap_cdpos: DataFrame = None) -> DataFrame:
+def integration_order(
+    sap_afko: DataFrame,
+    sap_afpo: DataFrame,
+    sap_aufk: DataFrame,
+    sap_mara: DataFrame,
+    sap_cdpos: DataFrame = None,
+) -> DataFrame:
     """
     Integrates order-related data by performing multiple join operations on the provided DataFrames.
     Handles missing values using `ZZGLTRP_ORIG` and `GLTRP`.
@@ -603,19 +610,21 @@ def integration_order(sap_afko: DataFrame, sap_afpo: DataFrame, sap_aufk: DataFr
 
     # Left join sap_afko with sap_afpo on AUFNR
     result = sap_afko.join(sap_afpo, on="AUFNR", how="left")
-    
+
     # Left join the result with sap_aufk on AUFNR
     result = result.join(sap_aufk, on="AUFNR", how="left")
-    
+
     # Left join the result with sap_mara on MATNR
     result = result.join(sap_mara, on="MATNR", how="left")
-    
+
     # If sap_cdpos is provided, left join with sap_cdpos on OBJNR
     if sap_cdpos is not None:
         result = result.join(sap_cdpos, on="OBJNR", how="left")
-    
+
     # Handle missing values in GLTRP by using ZZGLTRP_ORIG if available
-    result = result.withColumn("GLTRP", F.coalesce(result["ZZGLTRP_ORIG"], result["GLTRP"]))
+    result = result.withColumn(
+        "GLTRP", F.coalesce(result["ZZGLTRP_ORIG"], result["GLTRP"])
+    )
 
     return result
 
@@ -644,60 +653,59 @@ def post_prep_process_order(df: DataFrame) -> DataFrame:
     """
     # Check input parameter
     process_data(dataframe_check=df)
-    
+
     # Derive Intra and Inter Primary Keys
     df = df.withColumn(
-        "primary_key_intra", 
-        F.concat_ws("_", df["AUFNR"], df["POSNR"], df["DWERK"])
+        "primary_key_intra", F.concat_ws("_", df["AUFNR"], df["POSNR"], df["DWERK"])
     )
-    
+
     df = df.withColumn(
-        "primary_key_inter", 
-        F.concat_ws("_", df["SOURCE_SYSTEM_ERP"], df["AUFNR"], df["POSNR"], df["DWERK"])
+        "primary_key_inter",
+        F.concat_ws(
+            "_", df["SOURCE_SYSTEM_ERP"], df["AUFNR"], df["POSNR"], df["DWERK"]
+        ),
     )
-    
+
     # Calculate On-Time Flag
     df = df.withColumn(
-        "on_time_flag", 
+        "on_time_flag",
         F.when(F.col("ZZGLTRP_ORIG") >= F.col("LTRMI"), 1)
         .when(F.col("ZZGLTRP_ORIG") < F.col("LTRMI"), 0)
-        .otherwise(None)
+        .otherwise(None),
     )
-    
+
     # Calculate On-Time Deviation and Late Delivery Bucket
     df = df.withColumn(
-        "actual_on_time_deviation", 
-        F.datediff(F.col("ZZGLTRP_ORIG"), F.col("LTRMI"))
+        "actual_on_time_deviation", F.datediff(F.col("ZZGLTRP_ORIG"), F.col("LTRMI"))
     )
-    
+
     # Categorize late delivery bucket based on deviation
     df = df.withColumn(
-        "late_delivery_bucket", 
+        "late_delivery_bucket",
         F.when(F.col("actual_on_time_deviation") <= 0, "On-Time")
         .when(F.col("actual_on_time_deviation").between(1, 5), "Slightly Late")
         .when(F.col("actual_on_time_deviation").between(6, 10), "Moderately Late")
-        .otherwise("Severely Late")
+        .otherwise("Severely Late"),
     )
-    
+
     # Ensure ZZGLTRP_ORIG is present (if missing, add it with null values)
     if "ZZGLTRP_ORIG" not in df.columns:
         df = df.withColumn("ZZGLTRP_ORIG", F.lit(None))
-    
+
     # Step 5: Derive MTO vs MTS Flag
     df = df.withColumn(
-        "mto_vs_mts_flag", 
-        F.when(F.col("KDAUF").isNotNull(), "MTO").otherwise("MTS")
+        "mto_vs_mts_flag", F.when(F.col("KDAUF").isNotNull(), "MTO").otherwise("MTS")
     )
-    
+
     # Step 6: Convert Dates to Timestamps
     df = df.withColumn(
-        "order_finish_timestamp", 
-        F.to_timestamp(df["LTRMI"], "yyyy-MM-dd")  # Adjust format as needed
+        "order_finish_timestamp",
+        F.to_timestamp(df["LTRMI"], "yyyy-MM-dd"),  # Adjust format as needed
     )
-    
+
     df = df.withColumn(
-        "order_start_timestamp", 
-        F.to_timestamp(df["GSTRI"], "yyyy-MM-dd")  # Adjust format as needed
+        "order_start_timestamp",
+        F.to_timestamp(df["GSTRI"], "yyyy-MM-dd"),  # Adjust format as needed
     )
 
     return df

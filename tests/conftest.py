@@ -14,10 +14,7 @@ def spark_session():
         SparkSession: An active SparkSession.
     """
     spark = (
-        SparkSession.builder
-        .master("local[1]")
-        .appName("Pytest-Spark")
-        .getOrCreate()
+        SparkSession.builder.master("local[1]").appName("Pytest-Spark").getOrCreate()
     )
     yield spark
     spark.stop()

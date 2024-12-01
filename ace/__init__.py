@@ -1,14 +1,18 @@
 import argparse
 
-from . import utils
-from . import main_scripts
-from . import schemas
-
 from ace.main_scripts import process_local_material, process_order
 from ace.utils import union_many
 
+from . import main_scripts, schemas, utils
 
-__all__ = ["utils", "main_scripts", "schemas", "process_local_material", "union_many", "process_order"]
+__all__ = [
+    "utils",
+    "main_scripts",
+    "schemas",
+    "process_local_material",
+    "union_many",
+    "process_order",
+]
 
 
 def process_local_material_run(args=None):
@@ -36,15 +40,16 @@ def process_local_material_run(args=None):
         "--file_name",
         help="path to save output dataset.",
         required=False,
-        default="local_material"
+        default="local_material",
     )
     args, _ = parser.parse_known_args()
     process_local_material(
         data_dir=args.data_dir,
-        system_name=args.system_name
+        system_name=args.system_name,
         output_dir=args.output_dir,
-        file_name=args.file_name
+        file_name=args.file_name,
     )
+
 
 def process_order_run(args=None):
     parser = argparse.ArgumentParser()
@@ -71,15 +76,16 @@ def process_order_run(args=None):
         "--file_name",
         help="path to save output dataset.",
         required=False,
-        default="local_material"
+        default="local_material",
     )
     args, _ = parser.parse_known_args()
     process_order(
         data_dir=args.data_dir,
         system_name=args.system_name,
         output_dir=args.output_dir,
-        file_name=args.file_name
+        file_name=args.file_name,
     )
+
 
 def union_many_data(arg=None):
     parser = argparse.ArgumentParser()
@@ -87,7 +93,7 @@ def union_many_data(arg=None):
         "-d",
         "--data_path",
         help="list of file name with path which need to union",
-        nargs='+',
+        nargs="+",
         required=True,
     )
     parser.add_argument(
@@ -101,7 +107,7 @@ def union_many_data(arg=None):
         "--file_name",
         help="path to save output dataset.",
         required=False,
-        default="local_material"
+        default="local_material",
     )
     args, _ = parser.parse_known_args()
     union_many(
