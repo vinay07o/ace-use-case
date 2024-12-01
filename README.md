@@ -57,6 +57,17 @@ Ensure the following are installed:
     * Download winutils.exe.
     * Place it in C:\hadoop\bin.
 
+* Ensure ```make``` Command is Installed on Windows if not run below command to install
+    * Check if make is Installed:
+        * Open a command prompt or terminal.
+        * Type ```make --version``` and press Enter.
+        * If make is installed, the version number will be displayed. If not, you will see an error.
+    * Install ```make``` if Needed: (1st command to install ```scoop```)
+        ```bash
+        powershell -Command "Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force; iwr -useb get.scoop.sh | iex"
+
+        scoop install make
+
 ### Step 3: Configure the Project
 1. Navigate to the project folder:
     ```bash
@@ -120,7 +131,7 @@ Ensure the following are installed:
 `The server starts at localhost:9999. Use this address to review each file and gather details about functions or logic segments that have not been tested. This step is crucial for identifying areas that require additional test coverage to ensure the robustness of the project.`
 
 ## Steps to Run Python Formatters
-* Execute following coomand to format all python files of this project with PEP8 standards
+* Execute following command to format all python files of this project with PEP8 standards
     ```bash
     make format-python
 
