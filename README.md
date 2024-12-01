@@ -19,11 +19,44 @@ You will work with data from two SAP systems that have similar data sources. You
     ● Following best-in-class principles for flexibility and maintainability.
 
 ### Architecture of Local Material Data
-![Architecture Diagram](architecture/ace_modeling_v2.jpg)
+![Architecture Diagram](architecture/locam_material_modeling_v2.jpg)
 
 
 ### Architecture of Process Order Data
 ![Architecture Diagram](architecture/process_order_v2.jpg)
+
+### A typical top-level directory layout
+    ace-use-case
+    ├── ace
+    │   ├── data
+    │   │    ├── system_1
+    │   │    └── system_1
+    │   ├── main_scripts
+    │   │    ├── local_material.py
+    │   │    └── process_order.py    
+    │   ├── schemas
+    │   │    ├── schema_hormanization_stats.py
+    │   │    └── schemas.py
+    │   ├── utils
+    │   │    ├── _business_utils_.py
+    │   │    └── _use_case_utils_.py
+    ├── architecture
+    │   ├── locam_material_modeling_v2.drawio
+    │   ├── locam_material_modeling_v2.jpg
+    │   ├── process_order_v2.drawio
+    │   └── process_order_v2.jpg
+    └── documents
+        ├── schema_hormanization.xlsx
+        ├── Step-Document.pdg
+        └── Technical-Case-Study.pdf
+
+    tests
+    ├── samples
+    │   ├── iris.parquet
+    │   ├── sample.csv
+    │   └── sample.json
+    ├── conftest.py
+    └── test_utils.py
 
 
 ## Project Setup and Execution Guide
