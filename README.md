@@ -158,3 +158,45 @@ To maintain consistency, quality, and security within the project, contributors 
 - Validate that these safeguards are functioning to secure project quality.
 
 By following these guidelines, the project ensures clean, maintainable, and scalable code while meeting security and quality benchmarks.
+
+
+## Git commands for contributors
+*   Clone any repository
+    ```bash
+    git clone <repository link>
+
+*   Check branch
+    ```bash
+    git branch
+
+*   Create branch
+    ```bash
+    git branch <branch name>
+
+*   Switch to new branch
+    ```bash
+    git checkout <branch name>
+
+*   Push new branch to repository
+    ```bash
+    git push --set-upstream origin <branch name>
+
+*   Check file changes
+    ```bash
+    git status
+
+*   Add file changes to work
+    ```bash
+    git add . / git add filename
+
+*   Commit new changes
+    ```bash
+    git commit -m "commit comment"
+
+*   Push changes to repository
+    ```bash
+    git push
+
+*   pull changes from main branch before pushing or merging
+    ```bash
+    git pull
