@@ -46,6 +46,9 @@ Date:
     11/13/2024
 
 """
+# Pyspark import
+import pyspark.sql.functions as F
+
 # Import Custom utils
 from ace.utils import (
     prep_company_codes,
@@ -65,7 +68,7 @@ from ace.utils import (
 from ace.schemas import UNIFIED_SCHEMA, LOCAL_MATERIAL_SCHEMA_WITH_RELAVENT_NAMES
 
 
-def process_local_material(data_dir: str, output_dir: str, file_name: str):
+def process_local_material(data_dir: str, system_name: str, output_dir: str, file_name: str):
     """
     Processes local material data by reading input files, applying transformations, and integrating data.
 
@@ -73,6 +76,8 @@ def process_local_material(data_dir: str, output_dir: str, file_name: str):
     -----
     - data_dir (str): Directory containing the input files (e.g., PRE_MARA.csv, PRE_MBEW.csv, etc.).
     - output_dir (str): Directory where the processed file will be saved as `local_material.csv`.
+    - file_name (str): The name of the output file.
+    - system_name (str): specify the system name where source data came.
 
     Workflow:
     ---------
@@ -149,6 +154,8 @@ def process_local_material(data_dir: str, output_dir: str, file_name: str):
     local_material = rename_and_select(local_material, LOCAL_MATERIAL_SCHEMA_WITH_RELAVENT_NAMES, False)
     local_material = enforce_schema(local_material, UNIFIED_SCHEMA)
     local_material = add_missing_columns(local_material, UNIFIED_SCHEMA)
+
+    local_material = local_material.withColumn("system_name", F.lit(system_name))
 
     # save df as csv in desired location
     save_df_as_csv(local_material, output_dir, file_name)

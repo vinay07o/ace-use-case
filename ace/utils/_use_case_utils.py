@@ -486,3 +486,42 @@ def add_missing_columns(df, schema: T.StructType) -> DataFrame:
         df = df.withColumn(missing_col.name, F.lit(None).cast("string"))
 
     return df
+
+
+def union_many(data_path: list[str], output_dir, file_name):
+    """
+    This function reads multiple CSV files from specified paths, 
+    unions them into a single DataFrame, and saves the result as a CSV file.
+
+    Args:
+    - data_path (list[str]): A list of file paths to the CSV files that need to be read and united.
+    - output_dir (str): The directory where the final CSV file will be saved.
+    - file_name (str): The name of the output CSV file.
+    
+    Returns:
+    None
+    """
+    
+    # Initialize an empty list to store the DataFrames read from files
+    dfs_list = []
+    
+    # Loop over each file path in data_path and read the file into a DataFrame
+    for data in data_path:
+        # Use the read_file function to read each CSV file
+        # Assuming the read_file function takes a path, format, and options for reading CSVs
+        df = read_file(data, "csv", {"header": "true"})
+        
+        # Append each DataFrame to the list
+        dfs_list.append(df)
+
+    # Start with the first DataFrame in the list
+    union_df = dfs_list[0]
+
+    if len(data_path) > 1:
+    
+        # Union all remaining DataFrames in the list
+        for df in dfs_list[1:]:
+            union_df = union_df.union(df)  # Combine current DataFrame with the union so far
+
+    # Save the final united DataFrame as a CSV file to the specified output directory
+    save_df_as_csv(union_df, output_dir, file_name)

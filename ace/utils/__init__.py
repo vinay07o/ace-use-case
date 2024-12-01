@@ -24,6 +24,7 @@ from ._use_case_utils import (
     save_df_as_csv,
     rename_and_select,
     add_missing_columns,
+    union_many,
 )
 
 __all__ = [
@@ -47,4 +48,5 @@ __all__ = [
     "save_df_as_csv",
     "rename_and_select",
     "add_missing_columns",
+    "union_many",
 ]

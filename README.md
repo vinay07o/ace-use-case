@@ -32,7 +32,7 @@ You will work with data from two SAP systems that have similar data sources. You
 
 1. Clone the project from the Git repository:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/vinay07o/ace-use-case.git
 
  OR 2. If provided as a .zip file in an email, extract the files:
 
@@ -51,7 +51,7 @@ Ensure the following are installed:
 * Python (compatible with PySpark).
 * PySpark 3.5.3 installed via pip:
     ```bash
-    pip install pyspark==3.5.3
+    pip install pyspark==3.3.2
 
 * Hadoop winutils (Windows users only):
     * Download winutils.exe.

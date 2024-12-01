@@ -85,6 +85,9 @@ Date:
 -----
     11/13/2024
 """
+# Pyspark import
+import pyspark.sql.functions as F
+
 # Import Custom utils
 from ace.utils import (
     prep_general_material_data,
@@ -107,7 +110,7 @@ from ace.schemas import (
 )
 
 
-def process_order(data_dir: str, output_dir: str, file_name: str):
+def process_order(data_dir: str, system_name: str, output_dir: str, file_name: str):
     """
     Processes order data by reading multiple datasets, applying preprocessing, integrating data, 
     and performing post-processing transformations.
@@ -117,6 +120,7 @@ def process_order(data_dir: str, output_dir: str, file_name: str):
     - data_dir (str): The directory containing the input data files.
     - output_dir (str): The directory where the processed output file will be saved.
     - file_name (str): The name of the output file.
+    - system_name (str): specify the system name where source data came.
 
     Returns:
     --------
@@ -182,6 +186,8 @@ def process_order(data_dir: str, output_dir: str, file_name: str):
 
     process_order = enforce_schema(process_order, UNIFIED_SCHEMA)
     process_order = add_missing_columns(process_order, UNIFIED_SCHEMA)
+
+    local_material = local_material.withColumn("system_name", F.lit(system_name))
 
     # Save the final processed DataFrame as a CSV file
     save_df_as_csv(process_order, output_dir, file_name)
