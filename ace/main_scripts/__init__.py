@@ -1,3 +1,7 @@
+"""
+Package for SAP Data Processing schemas
+"""
+
 from .local_material import process_local_material
 from .process_order import process_order
 

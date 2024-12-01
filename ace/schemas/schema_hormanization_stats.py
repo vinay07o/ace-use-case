@@ -1,3 +1,13 @@
+"""
+This module defines the column mapping for multiple datasets used in the ETL pipeline.
+
+Author:
+    Vinayaka O
+
+Date:
+    01/12/2024
+"""
+
 LOCAL_MATERIAL_SCHEMA_WITH_RELAVENT_NAMES = {
     "MATNR": "material_number",
     "SOURCE_SYSTEM_ERP": "source_system_erp",

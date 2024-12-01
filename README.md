@@ -93,12 +93,12 @@ Ensure the following are installed:
 ### Step 7: If you want to union multiple system dataset use below command (optional)
 * Pass any model different systems dataset
     ```bash
-    union_datasets --data_path output/local_matrial_system_2.csv output/local_matrial_system_1.csv --output_dir output -file_name local_material
+    union_datasets --data_path output/local_matrial_system_2.csv output/local_matrial_system_1.csv --output_dir output --file_name local_material
 
-    union_datasets --data_path output/process_order_system_2.csv output/process_order_system_1.csv --output_dir output -file_name process_order
+    union_datasets --data_path output/process_order_system_2.csv output/process_order_system_1.csv --output_dir output --file_name process_order
 
 ## Steps to run execute test cases and code coverage
-    This step is not directly involved in generating the final output but is essential to ensure the project meets acceptance criteria. It verifies the functionality of the final product and evaluates code coverage, serving as a mandatory acceptance test for any data-driven products.
+```This step is not directly involved in generating the final output but is essential to ensure the project meets acceptance criteria. It verifies the functionality of the final product and evaluates code coverage, serving as a mandatory acceptance test for any data-driven products.```
 
 
 * Run make test to validate the project and confirm that all utilities execute correctly without any errors (Optional).

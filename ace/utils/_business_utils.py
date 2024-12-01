@@ -53,7 +53,7 @@ Author:
     Vinayaka O
 
 Date:
-    11/13/2024
+    01/12/2024
 """
 
 # Pyspark libraries
@@ -473,7 +473,7 @@ def post_prep_local_material(df: DataFrame) -> DataFrame:
 
     This function performs several transformations on the DataFrame including:
     - Concatenating WERKS and NAME1 with a hyphen to create 'mtl_plant_emd'
-    - Assigning global_mtl_id from MATNR or GLOBAL_MATERIAL_NUMBER
+    - Assigning global_mtl_id from MATNR or global_material_number
     - Deriving intra-system and inter-system primary keys
     - Handling duplicates by adding a duplicate count column and removing duplicate records
 
@@ -497,7 +497,7 @@ def post_prep_local_material(df: DataFrame) -> DataFrame:
 
     # Assign global_mtl_id from MATNR or the global material number
     df = df.withColumn(
-        "global_mtl_id", F.coalesce(df["MATNR"], df["GLOBAL_MATERIAL_NUMBER"])
+        "global_mtl_id", F.coalesce(df["MATNR"], df["global_material_number"])
     )
 
     # Derive primary keys (intra and inter)
